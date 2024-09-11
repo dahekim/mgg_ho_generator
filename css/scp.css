@@ -22,18 +22,16 @@
 * {
     padding: 0;
     margin: 0;
-    box-sizing: border-box;  /* 패딩, 마진이 포함되어서 사이즈가 결정되도록 설정 */
+    box-sizing: border-box;  
 }
 
 a {
-    text-decoration: none; /* 밑줄 제거 */
-    color: inherit; /* 부모 요소의 글꼴 색상 상속 */
+    text-decoration: none; 
+    color: inherit;
 }
 
 body {
     font-size: var(--font-medium);
-
-    /* 복사금지 */
     -webkit-user-select:none;
     -moz-user-select:none;
     -ms-user-select:none;
@@ -50,7 +48,7 @@ header {
     top: 0; 
     left: 0;
     width: 100%;
-    z-index: 1000; /* 다른 요소들 위로 배치 */
+    z-index: 1000;
 }
 /* Footer */
 footer {
@@ -62,7 +60,7 @@ footer {
     bottom: 0; 
     left: 0;
     width: 100%;
-    z-index: 1000; /* 다른 요소들 위로 배치 */
+    z-index: 1000; 
 }
 
 .clicked {
@@ -78,7 +76,7 @@ footer {
     background-color: var(--black-color) ;
     padding: 8px 12px;
     position: sticky;
-    top: 60px; /* header의 높이만큼 설정 */
+    top: 60px; 
     z-index: 1000;
 }
 
@@ -104,10 +102,10 @@ footer {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    width: 100%;            /* 전체 화면 너비 */
-    box-sizing: border-box; /* padding, border 포함 */
-    margin-top: 80px; /* 헤더의 높이만큼 위쪽에 공간을 추가 */
-    margin-bottom: 25px; /* 푸터의 높이만큼 아래쪽에 공간을 추가 */
+    width: 100%;            
+    box-sizing: border-box; 
+    margin-top: 80px; 
+    margin-bottom: 25px; 
 }
 
 .bracket-notes {
@@ -131,7 +129,7 @@ footer {
 }
 
 .main-content__container {
-    margin-bottom: 50px; /* 푸터의 높이만큼 아래쪽에 공간을 추가 */
+    margin-bottom: 50px; 
     display: flex;
     justify-content: center;
     align-items: center;
@@ -178,7 +176,8 @@ footer {
     align-items: center;
     justify-content: center;
     font-weight: 800;
-    font-size: 50px;
+    font-size: 42px;
+    line-height: 3.7rem;
 }
 
 .handout-card__behind {
@@ -227,7 +226,11 @@ footer {
     position: relative;
     justify-content: space-between;
     border-bottom: 1px solid var(--black-color);
-    height: 25px;
+    height: 40px;
+}
+
+.handout-card__shock-section span{
+    align-items: center;
 }
 
 .handout-card__shock-section .label__shock {
@@ -255,9 +258,9 @@ footer {
 .handout-card__shock-section .label__infection {
     display: flex;
     border-right: 1px solid var(--black-color);
-    padding: 5px 5px;
+    padding-left: 7px;
     font-weight: bold;
-    font-size: 10px;
+    font-size: 9px;
     flex: 1 1 20%;
 }
 
@@ -378,6 +381,11 @@ textarea:focus {
     flex-grow: 1;
 }
 
+#infectionInput::placeholder{
+    padding-top: 1px;
+    font-size: 12px;
+}
+
 button {
     margin-top: 3px;
     border: none;
@@ -424,14 +432,6 @@ hr {
 }
 
 .handout-output__container {
-    /* width: 800px;    padding: 10px 20px;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap; 
-    gap: 50px;
-    margin: 0 auto; 
-    margin-bottom: 60px; */
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -496,6 +496,21 @@ hr {
     text-align: center;
     color: var(--grey-dark-color);
     font-size: var(--font-medium);
+}
+
+.guide__container {
+    position: fixed; /* 스크롤 시 위치 고정 */
+    background-color: var(--white-color);
+    border-radius: 50%;
+    bottom: 80px;
+    right: 50px;
+    z-index: 1;
+}
+
+.guide__container i {
+    color:var(--red-color);
+    font-size: 2rem;
+    cursor: pointer;
 }
 
 /* 모달 기본 스타일 */

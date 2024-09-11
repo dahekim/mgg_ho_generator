@@ -22,12 +22,12 @@
 * {
     padding: 0;
     margin: 0;
-    box-sizing: border-box;  /* 패딩, 마진이 포함되어서 사이즈가 결정되도록 설정 */
+    box-sizing: border-box;  
 }
 
 a {
-    text-decoration: none; /* 밑줄 제거 */
-    color: inherit; /* 부모 요소의 글꼴 색상 상속 */
+    text-decoration: none; 
+    color: inherit; 
 }
 
 body, html {
@@ -36,8 +36,6 @@ body, html {
 
 body {
     font-size: var(--font-medium);
-
-    /* 복사금지 */
     -webkit-user-select:none;
     -moz-user-select:none;
     -ms-user-select:none;
@@ -54,7 +52,7 @@ header {
     top: 0; 
     left: 0;
     width: 100%;
-    z-index: 1000; /* 다른 요소들 위로 배치 */
+    z-index: 1000; 
 }
 /* Footer */
 footer {
@@ -66,7 +64,7 @@ footer {
     bottom: 0; 
     left: 0;
     width: 100%;
-    z-index: 1000; /* 다른 요소들 위로 배치 */
+    z-index: 1000; 
 }
 
 .clicked {
@@ -82,7 +80,7 @@ footer {
     background-color: var(--black-color) ;
     padding: 8px 12px;
     position: sticky;
-    top: 60px; /* header의 높이만큼 설정 */
+    top: 60px; 
     z-index: 1000;
 }
 
@@ -108,10 +106,10 @@ footer {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    width: 100%;            /* 전체 화면 너비 */
-    box-sizing: border-box; /* padding, border 포함 */
-    margin-top: 80px; /* 헤더의 높이만큼 위쪽에 공간을 추가 */
-    margin-bottom: 25px; /* 푸터의 높이만큼 아래쪽에 공간을 추가 */
+    width: 100%;            
+    box-sizing: border-box; 
+    margin-top: 80px; 
+    margin-bottom: 25px; 
 }
 
 .bracket-notes {
@@ -138,9 +136,9 @@ footer {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;            /* 전체 화면 너비 */
-    box-sizing: border-box; /* padding, border 포함 */
-    margin-bottom: 50px; /* 푸터의 높이만큼 아래쪽에 공간을 추가 */
+    width: 100%;            
+    box-sizing: border-box; 
+    margin-bottom: 50px; 
 }
 
 .handout-preview__container {
@@ -186,7 +184,7 @@ footer {
 .handout-card__name-section {
     display: flex;
     position: relative;
-    justify-content: space-between; /* 두 요소가 양 끝으로 배치되도록 설정 */
+    justify-content: space-between; 
     border: 1px solid var(--black-color);
     margin-bottom: 2px;
     height: 25px;
@@ -197,17 +195,18 @@ footer {
     border-right: 1px solid var(--black-color);
     padding: 5px 10px;
     font-weight: bold;
-    flex: 1 1 20%; /* 전체 너비의 20%를 차지 */
+    flex: 1 1 15%; 
     align-items: center;
+    font-size: 0.6rem;
 }
 
 .handout-card__name-section .content__name {
     height: 100%;                 
     width: 100%;                  
     display: flex;
-    align-items: center; /* 텍스트를 세로 가운데 정렬 */
-    flex: 1 1 60%; /* 전체 너비의 60%를 차지 */
-    padding-left: 5px; /* 텍스트와 경계선 사이에 여백 추가 */
+    align-items: center;
+    flex: 1 1 60%; 
+    padding-left: 5px; 
     padding-top: 1px;
     box-sizing: border-box;
     overflow: hidden;
@@ -216,9 +215,9 @@ footer {
 
 .handout-card__mission-section {
     display: flex;
-    flex-grow: 1; /* 남은 공간을 차지 */
+    flex-grow: 1; 
     flex-direction: column;
-    justify-content: flex-start; /* 상단에 맞추어 배치 */
+    justify-content: flex-start; 
     border: 1px solid var(--black-color);
     height: 100%;
 }   
@@ -234,7 +233,7 @@ footer {
     height: 100%;
     padding: 1px 3px;
     box-sizing: border-box;
-    overflow-wrap: break-word; /* 단어가 너무 길면 줄바꿈 */
+    overflow-wrap: break-word; 
     text-overflow: ellipsis;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -304,9 +303,9 @@ footer {
 
 .handout-card__shock-section .content__shock {
     display: flex;
-    align-items: center; /* 텍스트를 세로 가운데 정렬 */
-    flex: 1 1 60%; /* 전체 너비의 60%를 차지 */
-    padding-left: 5px; /* 텍스트와 경계선 사이에 여백 추가 */
+    align-items: center; 
+    flex: 1 1 60%; 
+    padding-left: 5px; 
     padding-top: 1px;
     height: 100%;                 
     width: 100%;                  
@@ -331,18 +330,18 @@ footer {
 .content__mission, .content__secret {
     position: relative;
     display: flex;
-    justify-content: center; /* 가로 가운데 정렬 */
-    align-items: center; /* 세로 가운데 정렬 */
-    overflow: hidden; /* 자식 요소가 부모를 넘지 않도록 설정 */
-    height: 100%; /* 부모 요소의 높이에 맞게 조정 */
-    width: 100%; /* 부모 요소의 너비에 맞게 조정 */
+    justify-content: center;
+    align-items: center; 
+    overflow: hidden; 
+    height: 100%; 
+    width: 100%; 
 }
 
 /* 이미지의 스타일 */
 .content__mission img, .content__secret img {
-    max-width: 100%; /* 부모 요소의 너비에 맞게 조정 */
-    max-height: 100%; /* 부모 요소의 높이에 맞게 조정 */
-    object-fit: contain; /* 이미지의 비율을 유지하면서 부모 요소에 맞게 조정 */
+    max-width: 100%; 
+    max-height: 100%; 
+    object-fit: contain; 
 }
 
 .handout-card__behind-footer {
@@ -447,8 +446,6 @@ button {
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s;
-    /* height: 40px;
-    width: 100px; */
 }
 
 .handout-editor__submit-btn,
@@ -501,7 +498,7 @@ hr {
 
 .handout-output__button-group {
     display: flex;
-    gap: 10px; /* 버튼 간 간격 조정 */
+    gap: 10px; 
 }
 
 .handout-output__container .card__container {
@@ -544,8 +541,8 @@ hr {
 }
 
 .handout-card:hover .delete-btn {
-    opacity: 1; /* 버튼이 보이도록 설정 */
-    visibility: visible; /* 버튼이 보이도록 설정 */
+    opacity: 1; 
+    visibility: visible; 
 }
 
 /* 메시지 스타일 */
@@ -553,6 +550,21 @@ hr {
     text-align: center;
     color: var(--grey-dark-color);
     font-size: var(--font-medium);
+}
+
+.guide__container {
+    display: inline-block;
+    position: fixed; 
+    border-radius: 50%;
+    bottom: 80px;
+    right: 50px;
+    z-index: 1;
+}
+
+.guide__container i {
+    color:var(--red-color);
+    font-size: 2rem;
+    cursor: pointer;
 }
 
 /* 모달 기본 스타일 */
@@ -596,7 +608,8 @@ hr {
     .delete-btn,
     .no-handouts-message,
     .guide__container,
-    .handout-output__button-group {
+    .handout-output__button-group
+     {
         display: none;
     }
 
