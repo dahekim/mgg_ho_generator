@@ -1,23 +1,23 @@
 // 문자열 길이를 콘솔에 출력하는 함수
-// function logTextareaLength(id) {
-//     const textarea = document.getElementById(id);
+function logTextareaLength(id) {
+    const textarea = document.getElementById(id);
 
-//     if (textarea) {
-//         textarea.addEventListener('input', () => {
-//             console.log(`Textarea ID: ${id}, Length: ${textarea.value.length}`);
-//         });
-//     } else {
-//         console.error(`No textarea found with ID: ${id}`);
-//     }
-// }
+    if (textarea) {
+        textarea.addEventListener('input', () => {
+            console.log(`Textarea ID: ${id}, Length: ${textarea.value.length}`);
+        });
+    } else {
+        console.error(`No textarea found with ID: ${id}`);
+    }
+}
 
-// // 사용 예시: 각각의 textarea 필드에 대해 함수 호출
-// document.addEventListener('DOMContentLoaded', () => {
-//     logTextareaLength('nameInput');
-//     logTextareaLength('missionInput');
-//     logTextareaLength('shockInput');
-//     logTextareaLength('secretInput');
-// });
+// 사용 예시: 각각의 textarea 필드에 대해 함수 호출
+document.addEventListener('DOMContentLoaded', () => {
+    logTextareaLength('nameInput');
+    logTextareaLength('missionInput');
+    logTextareaLength('shockInput');
+    logTextareaLength('secretInput');
+});
 
 // 특수 괄호 복사 
 document.addEventListener('DOMContentLoaded', function() {
@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-// 핸드아웃 앞면 이름, 쇼크 범위 폰트 크기 조절
+// 핸드아웃 앞면 이름, 쇼크 범위, 2차감염 폰트 크기 조절
 function adjustFontSizeNameShock(element, text) {
     if (text.length > 25) {
         element.style.fontSize = '7px';
@@ -58,7 +58,7 @@ function adjustFontSizeNameShock(element, text) {
     }
 }
 
-// 핸드아웃 앞면 사명 폰트크기 조절
+// 핸드아웃 앞면 사명정보 폰트크기 조절
 function adjustFontSizeMission(element, text) {
     if (text.length >225){
         element.style.fontSize = '8px';
@@ -96,6 +96,25 @@ function adjustFontSizeSecret(element, text) {
     }
 }
 
+// SCP핸드아웃 뒷면 비밀정보 폰트크기 조절
+function adjustFontSizeSecretSCP(element, text) {
+    if (text.length >132){
+        element.style.fontSize = '8px';
+        element.style.lineHeight = '1.1em';
+    }
+    else if (text.length > 94) {
+        element.style.fontSize = '10px';
+        element.style.lineHeight = '1.3em';
+    } 
+    else if (text.length > 58) {
+        element.style.fontSize = '12px';
+        element.style.lineHeight = '1.3em';
+    } else { // 디폴트
+        element.style.fontSize = '14px'; 
+        element.style.lineHeight = '1.5em'; 
+    }
+}
+
 // 인풋 필드 핸들러
 function updateContent(id, targetId, defaultValue, adjustFontSize) {
     const inputElement = document.getElementById(id);
@@ -108,7 +127,7 @@ function updateContent(id, targetId, defaultValue, adjustFontSize) {
     });
 }
 
-// 실시간 반영
+// 일반 핸드아웃 텍스트 변경점을 실시간으로 미리보기에 반영
 document.addEventListener('DOMContentLoaded', () => {
     updateContent("nameInput", "nameContent", "", adjustFontSizeNameShock);
     updateContent("shockInput", "shockContent", "", adjustFontSizeNameShock);
@@ -116,7 +135,38 @@ document.addEventListener('DOMContentLoaded', () => {
     updateContent("secretInput", "secretContent", "", adjustFontSizeSecret);
 });
 
-// 입력필드 초기화
+// 인풋 필드 핸들러 (DEBUGGING)
+// function updateContent(id, targetId, defaultValue, adjustFontSize) {
+//     const inputElement = document.getElementById(id);
+//     const targetElement = document.getElementById(targetId);
+
+//     // 디버깅을 위한 로그 추가
+//     console.log(`inputElement for id ${id}:`, inputElement);
+//     console.log(`targetElement for id ${targetId}:`, targetElement);
+
+//     if (inputElement && targetElement) {
+//         inputElement.addEventListener('input', () => {
+//             const text = inputElement.value || defaultValue;
+//             targetElement.innerText = text;
+//             adjustFontSize(targetElement, text);
+//         });
+//     } else {
+//         console.error(`Element(s) not found for id(s): ${id}, ${targetId}`);
+//     }
+// }
+
+// 일반 핸드아웃 텍스트 변경점을 실시간으로 미리보기에 반영
+document.addEventListener('DOMContentLoaded', () => {
+    updateContent("nameInput", "nameContent", "", adjustFontSizeNameShock);
+    updateContent("shockInput", "shockContent", "", adjustFontSizeNameShock);
+    updateContent("missionInput", "missionContent", "", adjustFontSizeMission);
+    updateContent("secretInput", "secretContent", "", adjustFontSizeSecret);
+});
+
+
+
+
+// 일반 핸드아웃 textarea 입력필드 초기화
 document.addEventListener('DOMContentLoaded', function() {
     const resetButton = document.querySelector('.handout-editor__reset-btn');
     
@@ -190,7 +240,7 @@ function createHandoutCard(name, mission, shock, secret) {
     return newCardHTML;
 }
 
-// 핸드아웃 등록
+// 일반 핸드아웃 등록
 document.addEventListener('DOMContentLoaded', function() {
     const submitButton = document.querySelector('.handout-editor__submit-btn');
     const outputContainer = document.querySelector('.card__container');
@@ -277,27 +327,27 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // 핸드아웃 추가 버튼 클릭 이벤트
-    document.querySelector('.handout-editor__submit-btn').addEventListener('click', function(event) {
-        // 카드 추가 로직이 실행된 후 메시지 업데이트
-        updateNoHandoutsMessage();
-    });
+// 핸드아웃 추가 버튼 클릭 이벤트
+document.querySelector('.handout-editor__submit-btn').addEventListener('click', function(event) {
+    // 카드 추가 로직이 실행된 후 메시지 업데이트
+    updateNoHandoutsMessage();
+});
 
-    // 카드 삭제 버튼 클릭 이벤트
-    cardContainer.addEventListener('click', function(event) {
-        if (event.target.classList.contains('delete-btn')) {
-            event.target.closest('.handout-card').remove();
-            updateNoHandoutsMessage();
-        }
-    });
-
-    // 초기화 버튼 클릭 이벤트
-    document.querySelector('.handout-output__reset-btn').addEventListener('click', function() {
-        // 카드 컨테이너 안의 모든 카드를 제거
-        cardContainer.innerHTML = '';
-        // 메시지 업데이트
+// 카드 삭제 버튼 클릭 이벤트
+cardContainer.addEventListener('click', function(event) {
+    if (event.target.classList.contains('delete-btn')) {
+        event.target.closest('.handout-card').remove();
         updateNoHandoutsMessage();
-    });
+    }
+});
+
+// 초기화 버튼 클릭 이벤트
+document.querySelector('.handout-output__reset-btn').addEventListener('click', function() {
+    // 카드 컨테이너 안의 모든 카드를 제거
+    cardContainer.innerHTML = '';
+    // 메시지 업데이트
+    updateNoHandoutsMessage();
+});
 
     // 페이지 로드 시 초기 메시지 상태 확인
     updateNoHandoutsMessage();
@@ -347,4 +397,198 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+});
+
+
+// 버튼 누르면 SCP로 변경
+// document.addEventListener("DOMContentLoaded", function () {
+//     document.getElementById("switchToSCP").addEventListener("click", function () {
+//         document.querySelector(".handout-preview__container").classList.add("scp-style");
+//         document.querySelector(".handout-preview__container").classList.remove("default-style");
+//         document.querySelector(".handout-editor__container").classList.add("scp-style");
+//         document.querySelector(".handout-editor__container").classList.remove("default-style");
+//         console.log('inSANeSCP 에디터로 변경')
+//     });
+// });
+
+// // 버튼 누르면 인세인 일반으로 변경
+// document.addEventListener("DOMContentLoaded", function () {
+//     document.getElementById("switchToDefault").addEventListener("click", function () {
+//         document.querySelector(".handout-preview__container").classList.add("default-style");
+//         document.querySelector(".handout-preview__container").classList.remove("scp-style");
+//         document.querySelector(".handout-editor__container").classList.add("default-style");
+//         document.querySelector(".handout-editor__container").classList.remove("scp-style");
+//         console.log('인세인(일반) 에디터로 변경')
+//     });
+// });
+
+
+// 인세인 <-> 인세인 SCP 전환 
+// HTML 구조 및 스타일 적용
+document.addEventListener('DOMContentLoaded', function() {
+    const switchToDefaultBtn = document.getElementById('switchToDefault');
+    const switchToSCPBtn = document.getElementById('switchToSCP');
+
+    const handoutPreview = document.getElementById('handoutPreview');
+    const handoutEditor = document.getElementById('handoutEditor');
+
+    // 핸드아웃 전환 함수
+    // 일반 핸드아웃 스타일 적용
+    function switchToDefaultHandout() {
+        handoutPreview.classList.add('general-handout');
+        handoutPreview.classList.remove('scp-handout');
+        handoutEditor.classList.add('general-handout');
+        handoutEditor.classList.remove('scp-handout');
+        
+        // 일반 핸드아웃 내용을 로드
+        loadDefaultHandoutContent();
+    }
+    
+    // 핸드아웃 전환 함수
+    // SCP 핸드아웃 스타일 적용
+    function switchToSCPHandout() {
+        handoutPreview.classList.add('scp-handout');
+        handoutPreview.classList.remove('general-handout');
+        handoutEditor.classList.add('scp-handout');
+        handoutEditor.classList.remove('general-handout');
+
+        // SCP 핸드아웃 내용을 로드
+        loadSCPHandoutContent();
+    }
+
+    // 버튼 클릭 이벤트 처리
+    switchToDefaultBtn.addEventListener('click', switchToDefaultHandout);
+    switchToSCPBtn.addEventListener('click', switchToSCPHandout);
+
+    // 일반 핸드아웃 html 로드 함수
+    function loadDefaultHandoutContent() {
+        handoutPreview.innerHTML = `
+            <!-- 일반 핸드아웃 미리보기 -->
+            <div class="handout-card">
+                <div class="handout-card__front">
+                    <div class="handout-card__front-header">Handout</div>
+                    <div class="handout-card__front-content">
+                        <div class="handout-card__name-section">
+                            <span class="label__name">이름</span>
+                            <div class="content__name" id="nameContent"></div>
+                        </div>
+                        <div class="handout-card__mission-section">
+                            <span class="label__mission">사명</span>
+                            <div class="content__mission" id="missionContent"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="handout-card__behind">
+                    <div class="handout-card__behind-header">Handout</div>
+                    <div class="handout-card__behind-content">
+                        <div class="handout-card__secret-section">비밀</div>
+                        <div class="handout-card__shock-secret-section">
+                            <div class="handout-card__shock-section">
+                                <span class="label__shock">쇼크</span>
+                                <div class="content__shock" id="shockContent"></div>
+                            </div>
+                            <div class="content__secret" id="secretContent"></div>
+                        </div>
+                        <div class="handout-card__behind-footer">
+                            <div class="footer__disclaimer">
+                                이 비밀을<br>
+                                스스로 밝힐 수는 없다.
+                            </div>
+                            <i class="fa-solid fa-hand"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+
+        handoutEditor.innerHTML = `
+            <!-- 일반 핸드아웃 에디터 -->
+            <div class="handout-editor__inputs">
+                <div class="handout-editor__front-inputs">
+                    <p class="editor-section__header">앞면</p>
+                    <div class="input-group__front">
+                        <textarea id="nameInput" placeholder="이름을 입력하세요." autocomplete="off"></textarea>
+                        <textarea id="missionInput" placeholder="사명 정보를 입력하세요." autocomplete="off"></textarea>
+                    </div>
+                </div>
+                <div class="handout-editor__behind-inputs">
+                    <p class="editor-section__header">뒷면</p>
+                    <div class="input-group__behind">
+                        <textarea id="shockInput" placeholder="쇼크를 입력하세요." autocomplete="off"></textarea>
+                        <textarea id="secretInput" placeholder="비밀 정보를 입력하세요." autocomplete="off"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="handout-editor__button-group">
+                <button type="reset" class="handout-editor__reset-btn">초기화</button>
+                <button type="submit" class="handout-editor__submit-btn">등록</button>
+            </div>
+        `;
+    }
+
+    // SCP 핸드아웃 html 로드 함수
+    function loadSCPHandoutContent() {
+        handoutPreview.innerHTML = `
+            <!-- SCP 핸드아웃 미리보기 -->
+            <section class="handout-preview__container">
+            <div class="handout-card">
+                <div class="handout-card__front">
+                    <div class="handout-card__front-header">Handout</div>
+                    <div class="handout-card__front-content">
+                        정<br />
+                        보<br />
+                        재<br />
+                        해<br />
+                    </div>
+                </div>
+                <div class="handout-card__behind">
+                    <div class="handout-card__behind-header">Handout</div>
+                    <div class="handout-card__behind-content">
+                        <div class="handout-card__secret-section">비밀</div>
+                        <div class="handout-card__shock-secret-section">
+                            <div class="handout-card__shock-section">
+                                <span class="label__shock">쇼크</span>
+                                <div class="content__shock" id="shockContent"></div>
+                            </div>
+                            <div class="handout-card__shock-section">
+                                <span class="label__infection">2차감염</span>
+                                <div class="content__infection" id="infectionContent"></div>
+                            </div>
+                            <div class="content__secret" id="secretContent"></div>
+                        </div>
+                        <div class="handout-card__behind-footer">
+                            <div class="footer__disclaimer">
+                                이 비밀을<br>
+                                스스로 밝힐 수는 없다.
+                            </div>
+                            <i class="fa-solid fa-hand"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        `;
+
+        handoutEditor.innerHTML = `
+            <!-- SCP 핸드아웃 에디터 -->
+            <div class="handout-editor__inputs">
+                <div class="handout-editor__behind-inputs">
+                    <p class="editor-section__header">뒷면</p>
+                    <div class="input-group__behind">
+                        <textarea id="shockInput" placeholder="쇼크를 입력하세요." autocomplete="off"></textarea>
+                        <textarea id="infectionInput" placeholder="감염정보를 입력하세요." autocomplete="off"></textarea>
+                        <textarea id="secretInput" placeholder="비밀정보를 입력하세요." autocomplete="off"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="handout-editor__button-group">
+                <button type="reset" class="handout-editor__reset-btn">초기화</button>
+                <button type="submit" class="handout-editor__submit-btn">등록</button>
+            </div>
+        </section>
+        `;
+    }
+
+    // 페이지 초기 로드 시 기본 핸드아웃 설정
+    switchToDefaultHandout();
 });

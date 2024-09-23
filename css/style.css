@@ -132,6 +132,31 @@ footer {
     background-color: var(--grey-light-color);
 }
 
+.version-switch-btn__container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;            
+    box-sizing: border-box; 
+    margin-bottom: 25px; 
+}
+
+.switch-btn {
+    padding: 3px 10px;
+    margin: 5px;
+    border: 1px solid var(--black-color);
+    background-color: var(--white-color);
+    color: var(--black-color);
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: var(--font-large);
+}
+
+.switch-btn:hover {
+    background-color: var(--grey-light-color);
+}
+
+
 .main-content__container {
     display: flex;
     justify-content: center;
@@ -414,6 +439,167 @@ footer {
     color: var(--white-color);
 }
 
+.scp-handout .handout-card__front {
+    width: var(--card-width);
+    height: var(--card-height);
+    background-color: var(--white-color);
+    padding: 4px 5px;
+    border: 1px solid var(--black-color);
+    display: flex;
+    flex-direction: column;
+}
+
+.scp-handout .handout-card__front-header {
+    color: var(--black-color);
+    font-size: var(--font-large);
+    font-weight: bold;
+    text-align: center;
+}
+
+.scp-handout .handout-card__front-content {
+    background-color: var(--black-color);
+    box-shadow: 0 0 0 1px var(--white-color), 0 0 0 2px var(--black-color);
+    margin: 4px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    color: var(--white-color);
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 42px;
+    line-height: 3.7rem;
+}
+
+.scp-handout .handout-card__behind {
+    width: var(--card-width);
+    height: var(--card-height);
+    background-color: var(--black-color);
+    padding: 4px 5px;
+    display: flex;
+    flex-direction: column;
+}
+
+.scp-handout .handout-card__behind-header {
+    color: var(--white-color);
+    font-size: var(--font-large);
+    padding: 5px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.scp-handout .handout-card__behind-content {
+    border: 3px solid var(--white-color);
+    padding: 2px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.scp-handout .handout-card__secret-section {
+    color: var(--white-color);
+    font-size: var(--font-medium);
+    padding: 5px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.scp-handout .handout-card__shock-secret-section {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--white-color);
+    height: 100%;
+    margin-bottom: 2px;
+}
+
+.scp-handout .handout-card__shock-secret-section .handout-card__shock-section {
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--black-color);
+    height: 40px;
+}
+
+.scp-handout .handout-card__shock-section span{
+    align-items: center;
+}
+
+.scp-handout .handout-card__shock-section .label__shock {
+    display: flex;
+    border-right: 1px solid var(--black-color);
+    padding: 5px 10px;
+    font-weight: bold;
+    flex: 1 1 20%;
+    align-items: center;
+}
+
+.scp-handout .handout-card__shock-section .content__shock {
+    display: flex;
+    align-items: center;
+    flex: 1 1 60%;
+    padding-left: 5px;
+    padding-top: 1px;
+    height: 100%;                 
+    width: 100%;                  
+    box-sizing: border-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.scp-handout .handout-card__shock-section .label__infection {
+    display: flex;
+    border-right: 1px solid var(--black-color);
+    padding-left: 7px;
+    font-weight: bold;
+    font-size: 9px;
+    flex: 1 1 20%;
+}
+
+.scp-handout .handout-card__shock-section .content__infection {
+    display: flex;
+    align-items: center;
+    flex: 1 1 60%;
+    padding-left: 5px;
+    padding-top: 1px;
+    height: 100%;                 
+    width: 100%;                  
+    box-sizing: border-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.scp-handout .handout-card__shock-secret-section .content__secret {
+    height: 100%;
+    padding: 2px 5px;
+    border-top: 1px solid var(--black-color);
+    margin-top: 1px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 15;
+    -webkit-box-orient: vertical;
+}
+
+.scp-handout .handout-card__behind-footer {
+    color: var(--white-color);
+    display: flex;
+    padding: 2px 4px;
+    justify-content: space-around;
+}
+
+.scp-handout .handout-card__behind-footer .footer__disclaimer {
+    text-align: center;
+    margin-top: 5px;
+    font-weight: bold;
+    font-size: var(--font-small);
+}
+
+.scp-handout .handout-card__behind-footer i {
+    justify-content: center;
+    font-size: xx-large;
+    transform: rotate(-20deg);
+}
+
 textarea {
     height: 32px;
     resize: none;
@@ -608,8 +794,9 @@ hr {
     .delete-btn,
     .no-handouts-message,
     .guide__container,
-    .handout-output__button-group
-     {
+    .handout-output__button-group,
+    .version-switch-btn__container
+    {
         display: none;
     }
 
