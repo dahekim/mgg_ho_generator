@@ -344,12 +344,13 @@ footer {
     max-height: 100%; 
     object-fit: contain; 
 }
-
 .handout-card__behind-footer {
     color: var(--white-color);
     display: flex;
     padding: 2px 4px;
     justify-content: space-around;
+    height: 40px;
+    position: sticky;
 }
 
 .handout-card__behind-footer .footer__disclaimer {
