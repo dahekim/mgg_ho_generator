@@ -53,7 +53,7 @@ function createHandoutCard(name, mission, shock, secret) {
                             <span class="label__shock">쇼크</span>
                             <div class="content__shock" style="font-size: ${getFontSize(previewShockContent)}">${shock}</div>
                         </div>
-                        <div class="content__secret-info" style="font-size: ${getFontSize(previewSecretContent)}">${secret}</div>
+                        <div class="content__secret" style="font-size: ${getFontSize(previewSecretContent)}">${secret}</div>
                     </div>
                     <div class="handout-card__behind-footer">
                         <div class="footer__disclaimer">
@@ -480,10 +480,10 @@ document.addEventListener('DOMContentLoaded', function() {
         if (text.length > 225) {
             element.style.fontSize = '8px';
             element.style.lineHeight = '1.1em';
-        } else if (text.length > 156) {
+        } else if (text.length > 144) {
             element.style.fontSize = '10px';
             element.style.lineHeight = '1.3em';
-        } else if (text.length > 99) {
+        } else if (text.length > 90) {
             element.style.fontSize = '12px';
             element.style.lineHeight = '1.3em';
         } else { // 디폴트
