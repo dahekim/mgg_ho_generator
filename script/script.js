@@ -315,17 +315,22 @@ document.addEventListener('DOMContentLoaded', function() {
                         <div class="handout-card__behind-header">Handout</div>
                         <div class="handout-card__behind-content">
                             <div class="handout-card__secret-section">비밀</div>
+
                             <div class="handout-card__shock-secret-section">
-                                <div class="handout-card__shock-section">
-                                    <span class="label__shock">쇼크</span>
-                                    <div class="content__shock" id="shockContent"></div>
+                                <div class="handout-card__range-section">
+                                    <div class="handout-card__shock-section">
+                                        <span class="label__shock">쇼크</span>
+                                        <div class="content__shock" id="shockContent"></div>
+                                    </div>
+                                    <div class="handout-card__shock-section">
+                                        <span class="label__infection">2차감염</span>
+                                        <div class="content__infection" id="infectionContent"></div>
+                                    </div>
                                 </div>
-                                <div class="handout-card__shock-section">
-                                    <span class="label__infection">2차감염</span>
-                                    <div class="content__infection" id="infectionContent"></div>
-                                </div>
+                                
                                 <div class="content__secret" id="secretContent"></div>
                             </div>
+
                             <div class="handout-card__behind-footer">
                                 <div class="footer__disclaimer">
                                     이 비밀을<br>
