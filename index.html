@@ -24,7 +24,6 @@
     <nav class="navbar">
         <ul class="navbar__menu">
             <li><a href="index.html" class="clicked">inSANe</a></li>
-            <li><a href="scp.html">inSANeSCP</a></li>
             <li><a href="#" class="coming-soon">마기카로기아</a></li> 
             <li><a href="#" class="coming-soon">시노비가미</a></li> 
         </ul>
@@ -39,70 +38,15 @@
         </div>
     </section>
 
-    <section class="main-content__container">
-        <!-- 카드 박스 -->
-        <section class="handout-preview__container">
-            <div class="handout-card">
-                <div class="handout-card__front">
-                    <div class="handout-card__front-header">Handout</div>
-                    <div class="handout-card__front-content">
-                        <div class="handout-card__name-section">
-                            <span class="label__name">이름</span>
-                            <div class="content__name" id="nameContent"></div>
-                        </div>
-                        <div class="handout-card__mission-section">
-                            <span class="label__mission">사명</span>
-                            <div class="content__mission" id="missionContent"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="handout-card__behind">
-                    <div class="handout-card__behind-header">Handout</div>
-                    <div class="handout-card__behind-content">
-                        <div class="handout-card__secret-section">비밀</div>
-                        <div class="handout-card__shock-secret-section">
-                            <div class="handout-card__shock-section">
-                                <span class="label__shock">쇼크</span>
-                                <div class="content__shock" id="shockContent"></div>
-                            </div>
-                            <div class="content__secret" id="secretContent"></div>
-                        </div>
-                        <div class="handout-card__behind-footer">
-                            <div class="footer__disclaimer">
-                                이 비밀을<br>
-                                스스로 밝힐 수는 없다.
-                            </div>
-                            <i class="fa-solid fa-hand"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+    <div class="version-switch-btn__container">
+        <button id="switchToDefault" class="switch-btn">인세인 핸드아웃으로 전환</button>
+        <button id="switchToSCP" class="switch-btn">SCP 핸드아웃으로 전환</button>
+    </div>
     
-        <!-- 입력 필드 -->
-        <section class="handout-editor__container">
-            <div class="handout-editor__inputs">
-                <div class="handout-editor__front-inputs">
-                    <p class="editor-section__header">앞면</p>
-                    <div class="input-group__front">
-                        <textarea id="nameInput" placeholder="이름을 입력하세요." autocomplete="off"></textarea>
-                        <textarea id="missionInput" placeholder="사명 정보를 입력하세요." autocomplete="off"></textarea>
-                    </div>
-                </div>
-                <div class="handout-editor__behind-inputs">
-                    <p class="editor-section__header">뒷면</p>
-                    <div class="input-group__behind">
-                        <textarea id="shockInput" placeholder="쇼크를 입력하세요." autocomplete="off"></textarea>
-                        <textarea id="secretInput" placeholder="비밀 정보를 입력하세요." autocomplete="off"></textarea>
-                    </div>
-                </div>
-            </div>
-            <div class="handout-editor__button-group">
-                <button type="reset" class="handout-editor__reset-btn">초기화</button>
-                <button type="submit" class="handout-editor__submit-btn">등록</button>
-            </div>
-        </section>
-    </section>
+    <div class="main-content__container">
+        <div id="handoutPreview" class="handout-preview__container general"></div>
+        <div id="handoutEditor" class="handout-editor__container general"></div>
+    </div>
 
     <p class="results-note">↓ 점선 아래로 핸드아웃이 추가됩니다. ↓</p>
 
@@ -114,7 +58,7 @@
             <button type="reset" class="handout-output__reset-btn">초기화</button>
             <button type="submit" class="handout-output__print-btn">인쇄</button>
         </div>
-        <div class="handout-output__message"></div>
+
         <div class="card__container"></div>
     </section>
 
@@ -130,8 +74,6 @@
             <i class="fa-solid fa-circle-question"></i>
         </a>
     </div>
-
-
     
     <!-- Footer -->
     <footer>
