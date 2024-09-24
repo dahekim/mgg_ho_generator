@@ -184,10 +184,12 @@ document.addEventListener('DOMContentLoaded', function() {
         selectedBtn.style.borderColor= '#ff0000';  
         selectedBtn.style.backgroundColor = '#ff0000';  
         selectedBtn.style.color = '#fff';
+        selectedBtn.style.fontWeight = '700';
         
         otherBtn.style.backgroundColor = '';            
         otherBtn.style.color = '';
         otherBtn.style.borderColor= '';  
+        otherBtn.style.fontWeight = '';
     }
 
 
