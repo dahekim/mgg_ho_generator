@@ -1,13 +1,9 @@
 // 특수 괄호 복사 
-document.addEventListener('DOMContentLoaded', function() {
-    const modal = document.getElementById('modal');
-    const modalMessage = document.getElementById('modal-message');
-    
+document.addEventListener('DOMContentLoaded', function() {    
     document.querySelectorAll('.bracket-btn').forEach(button => {
         button.addEventListener('click', function() {
             const bracketText = this.getAttribute('data-bracket');
             copyToClipboard(bracketText);
-            // showModal(`${bracketText}이 클립보드에 복사되었습니다.`);
         });
     });
 
@@ -27,7 +23,6 @@ function getFontSize(element) {
 
 // 일반 핸드아웃 카드 생성 함수
 function createHandoutCard(name, mission, shock, secret) {
-    // 미리보기 카드에서 폰트 크기를 가져오기
     const previewNameContent = document.getElementById('nameContent');
     const previewMissionContent = document.getElementById('missionContent');
     const previewShockContent = document.getElementById('shockContent');
@@ -77,7 +72,6 @@ function createHandoutCard(name, mission, shock, secret) {
 
 // SCP 핸드아웃 카드 생성 함수
 function createSCPHandoutCard(shock, infection, secret) {
-    // 미리보기 카드에서 폰트 크기를 가져오기
     const previewShockContent = document.getElementById('shockContent');
     const previewInfectionContent = document.getElementById('infectionContent');
     const previewSecretContent = document.getElementById('secretContent');
@@ -124,32 +118,6 @@ function createSCPHandoutCard(shock, infection, secret) {
     return newCardHTML;
 }
 
-
-// 일반 핸드아웃 등록
-document.addEventListener('DOMContentLoaded', function() {
-    const submitButton = document.querySelector('.handout-editor__submit-btn');
-    const outputContainer = document.querySelector('.card__container');
-
-    submitButton.addEventListener('click', function(event) {
-        const nameInput = document.getElementById('nameInput').value.trim();
-        const missionInput = document.getElementById('missionInput').value.trim();
-        const shockInput = document.getElementById('shockInput').value.trim();
-        const secretInput = document.getElementById('secretInput').value.trim();
-
-        const newCardHTML = createHandoutCard(nameInput, missionInput, shockInput, secretInput);
-        outputContainer.innerHTML += newCardHTML;
-
-        // 입력 필드 초기화
-        document.querySelectorAll('textarea').forEach(textarea => textarea.value = '');
-
-        // 미리보기 내용 삭제
-        document.getElementById('nameContent').textContent = '';
-        document.getElementById('missionContent').textContent = '';
-        document.getElementById('shockContent').textContent = '';
-        document.getElementById('secretContent').textContent = '';
-    });
-});
-
 // 핸드아웃 개별 삭제
 document.addEventListener('DOMContentLoaded', () => {
     const outputContainer = document.querySelector('.handout-output__container');
@@ -163,18 +131,13 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-
+// 인쇄 프리뷰 페이지 초기화
 document.addEventListener('DOMContentLoaded', function() {
     const resetButton = document.querySelector('.handout-output__reset-btn');
     const cardContainer = document.querySelector('.card__container');
-    const messageElement = document.querySelector('.handout-output__message');
 
     resetButton.addEventListener('click', function() {
-        // card__container 내부 내용물을 삭제
         cardContainer.innerHTML = '';
-
-        // 메시지를 다시 표시
-        messageElement.style.display = 'block';
     });
 });
 
@@ -190,16 +153,13 @@ document.addEventListener('DOMContentLoaded', () => {
 document.addEventListener('DOMContentLoaded', () => {
     const modal = document.getElementById("comingSoonModal");
     const comingSoonLinks = document.querySelectorAll('.coming-soon');
-    const closeBtn = document.getElementById("closeComingSoonModal");
-
-    // "준비중" 링크를 클릭하면 모달을 표시
     comingSoonLinks.forEach(link => {
         link.addEventListener('click', function(event) {
-            event.preventDefault(); // 기본 링크 동작 방지
-            modal.style.display = "block"; // 모달 표시
+            event.preventDefault(); 
+            modal.style.display = "block"; 
             setTimeout(() => {
                 modal.style.display = 'none';
-            }, 800); // 0.85초 후에 모달을 숨깁니다.
+            }, 800); 
         });
     });
 
@@ -219,7 +179,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const handoutPreview = document.getElementById('handoutPreview');
     const handoutEditor = document.getElementById('handoutEditor');
 
-    // 버튼 배경색 업데이트 함수
+    // 버튼 배경색 업데이트
     function updateButtonBackground(selectedBtn, otherBtn) {
         selectedBtn.style.borderColor= '#ff0000';  
         selectedBtn.style.backgroundColor = '#ff0000';  
@@ -239,12 +199,12 @@ document.addEventListener('DOMContentLoaded', function() {
         handoutEditor.classList.remove('scp-handout');
         
         loadDefaultHandoutContent();
+
         updateContent('nameInput', 'nameContent', '', adjustFontSizeNameShock);
         updateContent('missionInput', 'missionContent', '', adjustFontSizeMission);
         updateContent('shockInput', 'shockContent', '', adjustFontSizeNameShock);
         updateContent('secretInput', 'secretContent', '', adjustFontSizeSecret);
 
-        // 버튼 배경색 업데이트
         updateButtonBackground(switchToDefaultBtn, switchToSCPBtn)
     }
     
@@ -256,11 +216,11 @@ document.addEventListener('DOMContentLoaded', function() {
         handoutEditor.classList.remove('general-handout');
 
         loadSCPHandoutContent();
+
         updateContent('shockInput', 'shockContent', '', adjustFontSizeNameShock);
         updateContent('infectionInput', 'infectionContent', '', adjustFontSizeNameShock);
         updateContent('secretInput', 'secretContent', '', adjustFontSizeSecretSCP);
 
-        // 버튼 배경색 업데이트
         updateButtonBackground(switchToSCPBtn, switchToDefaultBtn)
     }
 
@@ -408,16 +368,15 @@ document.addEventListener('DOMContentLoaded', function() {
     function resetHandout(){
         const textareas = document.querySelectorAll('textarea');
         textareas.forEach(function(textarea) {
-            textarea.value = ''; // textarea 비우기
+            textarea.value = ''; 
         });
 
         const contentElements = ['nameContent', 'missionContent', 'shockContent', 'secretContent', 'infectionContent'];
         contentElements.forEach(function(id) {
             const element = document.getElementById(id);
             if (element) {
-                element.textContent = ''; // 내용을 비우기
-                // 기본 폰트 크기 적용
-                adjustFontSizeNameShock(element, ''); // 빈 값에 대한 기본 폰트 크기 설정
+                element.textContent = '';
+                adjustFontSizeNameShock(element, '');
             }
         });
 
@@ -449,6 +408,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const secretInput = document.getElementById('secretInput').value.trim();
 
         const newCardHTML = createHandoutCard(nameInput, missionInput, shockInput, secretInput);
+        
         outputContainer.innerHTML += newCardHTML;
 
         // 입력 필드 초기화
