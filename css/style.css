@@ -731,13 +731,6 @@ hr {
     visibility: visible; 
 }
 
-/* 메시지 스타일 */
-.no-handouts-message {
-    text-align: center;
-    color: var(--grey-dark-color);
-    font-size: var(--font-medium);
-}
-
 .guide__container {
     display: inline-block;
     position: fixed; 
