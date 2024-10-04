@@ -634,36 +634,26 @@ hr {
     margin-bottom: 10px;    
 }
 
-.handout-output__container {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    flex-wrap: wrap; 
-    gap: 20px;
-    width: 800px;    
-    margin: 0 auto; 
-}
-
 .handout-output__button-group {
     display: flex;
     gap: 10px; 
+    justify-content: center;
 }
 
-.handout-output__container .card__container {
+.card__container {
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap; 
-    width: 100%;    
-    padding: 10px 20px;
+    width: 800px;    
+    padding: 20px;
+    padding-bottom: 80px;
     gap: 50px;
     margin: 0 auto; 
-    margin-bottom: 50px;
 }
 
-.handout-output__container .card__container .handout-card {
+.card__container .handout-card {
     display: flex;
     flex-direction: row;
     position: relative;
@@ -766,4 +756,3 @@ hr {
         page-break-after: always;
     }
 }
-

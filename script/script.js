@@ -120,7 +120,7 @@ function createSCPHandoutCard(shock, infection, secret) {
 
 // 핸드아웃 개별 삭제
 document.addEventListener('DOMContentLoaded', () => {
-    const outputContainer = document.querySelector('.handout-output__container');
+    const outputContainer = document.querySelector('.card__container');
     outputContainer.addEventListener('click', function(event) {
         if (event.target.classList.contains('delete-btn')) {
             const cardToRemove = event.target.closest('.handout-card');
