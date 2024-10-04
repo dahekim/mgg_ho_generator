@@ -374,6 +374,7 @@ nav {
     flex-direction: column;
     border: 1px solid var(--black-color);
     padding: 4px;
+    width: 180px;
 }
 
 .editor-section__header {
