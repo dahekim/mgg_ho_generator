@@ -8,11 +8,28 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     function copyToClipboard(text) {
+        // http 환경
+        const textArea = document.createElement('textarea');
+        textArea.value = text;
+        document.body.appendChild(textArea);
+        textArea.select();
+        textArea.setSelectionRange(0, 99999);
+        try {
+            document.execCommand('copy');
+        } catch (err) {
+            console.error('복사 실패', err);
+        }
+        textArea.setSelectionRange(0, 0);
+        document.body.removeChild(textArea);
+
+        // http 환경에서 구동되지 않아서 주석 처리
+        /*
         navigator.clipboard.writeText(text).then(() => {
             console.log('클립보드에 복사됨: ', text);
         }).catch(err => {
             console.error('클립보드 복사 실패: ', err);
         });
+        */
     }
 });
 
