@@ -121,7 +121,46 @@ function createEnigmaHandoutCard(shock, infection, secret) {
 }
 
 // 페르소나 핸드아웃 카드 생성 함수
-function createPersonaHandoutCard(name, info, persona_name, secret ){
+function createPersonaHandoutCard(name, mission, persona, secret){
+    const previewNameContent = document.getElementById('nameContent');
+    const previewMissionContent = document.getElementById('missionContent');
+    const previewPersonaContent = document.getElementById('personaContent');
+    const previewSecretContent = document.getElementById('secretContent');
+
+    const newCardHTML = `
+        <div class="handout-card">
+            <button class="delete-btn">X</button>
+            <div class="handout-card__front">
+                <div class="handout-card__front-header">페르소나</div>
+                <div class="handout-card__front-content">
+                    <div class="handout-card__name-section">
+                        <span class="label__name">이름</span>
+                        <div class="content__name" style="font-size: ${getFontSize(previewNameContent)}">${name}</div>
+                    </div>
+                    <div class="handout-card__mission-section">
+                        <span class="label__mission">위장</span>
+                        <div class="content__mission" style="font-size: ${getFontSize(previewMissionContent)}">${mission}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="handout-card__behind">
+                <div class="handout-card__behind-header">페르소나</div>                
+                <div class="handout-card__behind-content">
+                    <div class="handout-card__persona-section">
+                            <span class="label__persona">이름</span>
+                            <div class="content__persona"style="font-size: ${getFontSize(previewPersonaContent)}">${persona}</div>
+                    </div>
+                    <div class="handout-card__secret-section">진실</div>
+                    <div class="handout-card__shock-secret-section">
+                        <div class="content__secret" style="font-size: ${getFontSize(previewSecretContent)}">${secret}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+
+    return newCardHTML;
+
 }
 
 // 핸드아웃 개별 삭제
@@ -234,9 +273,26 @@ document.addEventListener('DOMContentLoaded', function() {
         updateButtonBackground(switchToEnigmaBtn, switchToDefaultBtn, switchToPersonaBtn)
     }
 
-    switchToDefaultBtn.addEventListener('click', switchToDefaultHandout);
-    // switchToSCPBtn.addEventListener('click', switchToSCPHandout);
+    // 페르소나 핸드아웃
+    function switchToPersonaHandout() {
+        handoutPreview.classList.add('general-handout');
+        handoutPreview.classList.remove('scp-handout');
+        handoutEditor.classList.add('general-handout');
+        handoutEditor.classList.remove('scp-handout');
 
+        loadPersonaHandoutContent();
+        updateContent('nameInput', 'nameContent', '', adjustFontSizeNameShock);
+        updateContent('missionInput', 'missionContent', '', adjustFontSizeMission);
+        updateContent('personaInput', 'personaContent', '', adjustFontSizeNameShock);
+        updateContent('secretInput', 'secretContent', '', adjustFontSizeSecret);
+        
+        updateButtonBackground(switchToPersonaBtn, switchToEnigmaBtn, switchToDefaultBtn)
+    }
+
+    switchToDefaultBtn.addEventListener('click', switchToDefaultHandout);
+    switchToEnigmaBtn.addEventListener('click', switchToEnigmaHandout);
+    switchToPersonaBtn.addEventListener('click', switchToPersonaHandout);
+    
     // 일반 핸드아웃 HTML 불러오기
     function loadDefaultHandoutContent() {
         handoutPreview.innerHTML = `
@@ -373,6 +429,70 @@ document.addEventListener('DOMContentLoaded', function() {
         submitBtn.addEventListener('click', submitSCPHandout);
     }
 
+    // 페르소나 핸드아웃 HTML 불러오기
+    function loadPersonaHandoutContent() {
+        handoutPreview.innerHTML = `
+            <div class="handout-card">
+                <div class="handout-card__front">
+                    <div class="handout-card__front-header">페르소나</div>
+                    <div class="handout-card__front-content">
+                        <div class="handout-card__name-section">
+                            <span class="label__name">이름</span>
+                            <div class="content__name" id="nameContent"></div>
+                        </div>
+                        <div class="handout-card__mission-section">
+                            <span class="label__mission">위장</span>
+                            <div class="content__mission" id="missionContent"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="handout-card__behind">
+                    <div class="handout-card__behind-header">페르소나</div>
+                    <div class="handout-card__behind-content">
+                        <div class="handout-card__persona-section">
+                            <span class="label__persona">이름</span>
+                            <div class="content__persona" id="personaContent"></div>
+                        </div>
+                        <div class="handout-card__secret-section">진실</div>
+                        <div class="handout-card__shock-secret-section">
+                            <div class="content__secret" id="secretContent"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+
+        handoutEditor.innerHTML = `
+            <div class="handout-editor__inputs">
+                <div class="handout-editor__front-inputs">
+                    <p class="editor-section__header">앞면</p>
+                    <div class="input-group__front">
+                        <textarea id="nameInput" placeholder="이름을 입력하세요." autocomplete="off"></textarea>
+                        <textarea id="missionInput" placeholder="위장 정보를 입력하세요." autocomplete="off"></textarea>
+                    </div>
+                </div>
+                <div class="handout-editor__behind-inputs">
+                    <p class="editor-section__header">뒷면</p>
+                    <div class="input-group__behind">
+                        <textarea id="personaInput" placeholder="이름을 입력하세요." autocomplete="off"></textarea>
+                        <textarea id="secretInput" placeholder="진실 정보를 입력하세요." autocomplete="off"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="handout-editor__button-group">
+                <button type="reset" class="handout-editor__reset-btn">초기화</button>
+                <button type="submit" class="handout-editor__submit-btn">등록</button>
+            </div>
+        `;
+
+        const resetBtn = document.querySelector('.handout-editor__reset-btn');
+        const submitBtn = document.querySelector('.handout-editor__submit-btn');
+        
+        resetBtn.addEventListener('click', resetPersonaHandout);
+        submitBtn.addEventListener('click', submitPersonaHandout);
+    }
+
+
     // 일반 핸드아웃 초기화
     function resetHandout(){
         const textareas = document.querySelectorAll('textarea');
@@ -388,7 +508,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 adjustFontSizeNameShock(element, '');
             }
         });
-
     }
 
     // 에니그마 핸드아웃 초기화
@@ -402,6 +521,24 @@ document.addEventListener('DOMContentLoaded', function() {
             const element = document.getElementById(id);
             if (element) {
                 element.textContent = '';
+            }
+        });
+
+    }
+
+    // 페르소나 핸드아웃 초기화
+    function resetPersonaHandout(){
+        const textareas = document.querySelectorAll('textarea');
+        textareas.forEach(function(textarea) {
+            textarea.value = ''; 
+        });
+
+        const contentElements = ['nameContent', 'missionContent', 'personaContent', 'secretContent'];
+        contentElements.forEach(function(id) {
+            const element = document.getElementById(id);
+            if (element) {
+                element.textContent = '';
+                adjustFontSizeNameShock(element, '');
             }
         });
 
@@ -449,6 +586,29 @@ document.addEventListener('DOMContentLoaded', function() {
 
     }
 
+    // 페르소나 핸드아웃 등록
+    function submitPersonaHandout(){
+        const outputContainer = document.querySelector('.card__container');
+
+        const nameInput = document.getElementById('nameInput').value.trim();
+        const missionInput = document.getElementById('missionInput').value.trim();
+        const personaInput = document.getElementById('personaInput').value.trim();
+        const secretInput = document.getElementById('secretInput').value.trim();
+
+        const newCardHTML = createPersonaHandoutCard(nameInput, missionInput, personaInput, secretInput);
+        
+        outputContainer.innerHTML += newCardHTML;
+
+        // 입력 필드 초기화
+        document.querySelectorAll('textarea').forEach(textarea => textarea.value = '');
+
+        // 미리보기 내용 삭제
+        document.getElementById('nameContent').textContent = '';
+        document.getElementById('missionContent').textContent = '';
+        document.getElementById('personaContent').textContent = '';
+        document.getElementById('secretContent').textContent = '';
+    }
+
     // 에디터 textarea에 텍스트 입력 시 카드 프리뷰에 실시간으로 텍스트 업데이트
     function updateContent(id, targetId, defaultValue, adjustFontSize) {
         const inputElement = document.getElementById(id);
@@ -465,7 +625,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // 일반 핸드아웃 앞면 이름, 쇼크 범위 & SCP 핸드아웃 2차감염 폰트 크기 조절
+    // 일반 핸드아웃 앞면 이름, 쇼크 범위 & 페르소나 핸드아웃 앞면뒷면 이름 폰트크기 조절
     function adjustFontSizeNameShock(element, text) {
         if (text.length > 25) {
             element.style.fontSize = '7px';
@@ -482,7 +642,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // 일반 핸드아웃 앞면 사명정보 폰트 크기 조절
+    // 일반 핸드아웃 앞면 사명정보 & 페르소나 핸드아웃 앞면 위장정보 및 뒷면 진실 정보 폰트 크기 조절
     function adjustFontSizeMission(element, text) {
         if (text.length > 225) {
             element.style.fontSize = '8px';
