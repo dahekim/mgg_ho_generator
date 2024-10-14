@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>모험기획국 TRPG 핸드아웃 생성기 - inSANe </title>
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/shinobi.css">
     <link rel="icon" href="./favicon.ico" type="image/x-icon">
-    <script src="./script/script.js"></script>
+    <script src="./script/shinobi.js"></script>
     <script
         src="https://kit.fontawesome.com/de65e8c240.js"
         crossorigin="anonymous"
@@ -23,9 +23,9 @@
 
     <nav class="navbar">
         <ul class="navbar__menu">
-            <li><a href="index.html" class="clicked">inSANe</a></li>
+            <li><a href="index.html">inSANe</a></li>
             <li><a href="#" class="coming-soon">마기카로기아</a></li> 
-            <li><a href="shinobi.html">시노비가미</a></li> 
+            <li><a href="shinobi.html" class="clicked">시노비가미</a></li> 
         </ul>
     </nav>
 
@@ -39,8 +39,9 @@
     </section>
 
     <div class="version-switch-btn__container">
-        <button id="switchToDefault" class="switch-btn">인세인 핸드아웃</button>
-        <button id="switchToSCP" class="switch-btn">SCP 핸드아웃</button>
+        <button id="switchToDefault" class="switch-btn">일반 핸드아웃</button>
+        <button id="switchToEnigma" class="switch-btn">에니그마 핸드아웃</button>
+        <button id="switchToPersona" class="switch-btn">페르소나 핸드아웃</button>
     </div>
     
     <div class="main-content__container">
@@ -53,13 +54,14 @@
     <hr noshade/>
 
     <!-- 카드 결과물 -->
-    <section class="handout-output__button-group">
-        <button type="reset" class="handout-output__reset-btn">초기화</button>
-        <button type="submit" class="handout-output__print-btn">인쇄</button>
+    <section class="handout-output__container">
+        <div class="handout-output__button-group">
+            <button type="reset" class="handout-output__reset-btn">초기화</button>
+            <button type="submit" class="handout-output__print-btn">인쇄</button>
+        </div>
+
+        <div class="card__container"></div>
     </section>
-
-    <section class="card__container"></section>
-
 
     <!-- 준비중 모달 -->
     <div id="comingSoonModal" class="modal">
