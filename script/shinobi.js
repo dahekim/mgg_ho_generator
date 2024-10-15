@@ -73,44 +73,46 @@ function createHandoutCard(name, mission, secret) {
 }
 
 // 에니그마 핸드아웃 카드 생성 함수
-function createEnigmaHandoutCard(shock, infection, secret) {
-    const previewShockContent = document.getElementById('shockContent');
-    const previewInfectionContent = document.getElementById('infectionContent');
-    const previewSecretContent = document.getElementById('secretContent');
+function createEnigmaHandoutCard(name, mission, enigma, condition, effect) {
+    const previewNameContent = document.getElementById('nameContent');
+    const previewMissionContent = document.getElementById('missionContent');
+    const previewEnigmaContent = document.getElementById('enigmaContent');
+    const previewConditionContent = document.getElementById('conditionContent');
+    const previewEffectContent = document.getElementById('effectContent');
 
     const newCardHTML = `
-        <div class="handout-card scp-handout">
+        <div class="handout-card">
             <button class="delete-btn">X</button>
             <div class="handout-card__front">
-                <div class="handout-card__front-header">Handout</div>
+                <div class="handout-card__front-header">에니그마</div>
                 <div class="handout-card__front-content">
-                    정<br />
-                    보<br />
-                    재<br />
-                    해<br />
+                    <div class="handout-card__name-section">
+                        <span class="label__name">이름</span>
+                        <div class="content__name" style="font-size: ${getFontSize(previewNameContent)}">${name}</div>
+                    </div>
+                    <div class="handout-card__mission-section">
+                        <span class="label__mission">위장</span>
+                        <div class="content__mission" style="font-size: ${getFontSize(previewMissionContent)}">${mission}</div>
+                    </div>
                 </div>
             </div>
-            <div class="handout-card__behind scp-handout">
-                <div class="handout-card__behind-header">Handout</div>
+            <div class="handout-card__behind">
+                <div class="handout-card__behind-header">에니그마</div>
                 <div class="handout-card__behind-content">
-                    <div class="handout-card__secret-section">비밀</div>
-                    <div class="handout-card__shock-secret-section">
-                        <div class="handout-card__shock-section">
-                            <span class="label__shock">쇼크</span>
-                            <div class="content__shock" style="font-size: ${getFontSize(previewShockContent)}">${shock}</div>
-                        </div>
-                        <div class="handout-card__shock-section">
-                                <span class="label__infection">2차감염</span>
-                                <div class="content__infection" style="font-size: ${getFontSize(previewInfectionContent)}">${infection}</div>
-                            </div>
-                        <div class="content__secret" style="font-size: ${getFontSize(previewSecretContent)}">${secret}</div>
+                    <div class="handout-card__enigma-section">
+                        <span class="label__enigma">이름</span>
+                        <div class="content__enigma" style="font-size: ${getFontSize(previewEnigmaContent)}">${enigma}</div>
                     </div>
-                    <div class="handout-card__behind-footer">
-                        <div class="footer__disclaimer">
-                            이 비밀을<br>
-                            스스로 밝힐 수는 없다.
+                    <div class="handout-card__secret-section">전력</div>
+                    <div class="handout-card__enigma-info-section">
+                        <div class="handout-card__condition-section">
+                            <span class="label__condition">---------해제 조건---------</span>
+                            <div class="content__condition" style="font-size: ${getFontSize(previewConditionContent)}">${condition}</div>
                         </div>
-                        <i class="fa-solid fa-hand"></i>
+                        <div class="handout-card__effect-section">
+                            <span class="label__effect">------------효과------------</span>
+                            <div class="content__effect" style="font-size: ${getFontSize(previewEffectContent)}">${effect}</div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -242,12 +244,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // 일반 핸드아웃 전환
-    function switchToDefaultHandout() {
-        handoutPreview.classList.add('general-handout');
-        handoutPreview.classList.remove('scp-handout');
-        handoutEditor.classList.add('general-handout');
-        handoutEditor.classList.remove('scp-handout');
-        
+    function switchToDefaultHandout() {        
         loadDefaultHandoutContent();
 
         updateContent('nameInput', 'nameContent', '', adjustFontSizeNameShock);
@@ -259,28 +256,21 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // 에니그마 핸드아웃 전환
     function switchToEnigmaHandout() {
-        handoutPreview.classList.add('scp-handout');
-        handoutPreview.classList.remove('general-handout');
-        handoutEditor.classList.add('scp-handout');
-        handoutEditor.classList.remove('general-handout');
-
         loadEnigmaHandoutContent();
 
-        updateContent('shockInput', 'shockContent', '', adjustFontSizeNameShock);
-        updateContent('infectionInput', 'infectionContent', '', adjustFontSizeNameShock);
-        updateContent('secretInput', 'secretContent', '', adjustFontSizeSecretSCP);
-
+        updateContent('nameInput', 'nameContent', '', adjustFontSizeNameShock);
+        updateContent('missionInput', 'missionContent', '', adjustFontSizeMission);
+        updateContent('enigmaInput', 'enigmaContent', '', adjustFontSizeNameShock);
+        updateContent('conditionInput', 'conditionContent', '', adjustFontSizeCondition);
+        updateContent('effectInput', 'effectContent', '', adjustFontSizeEffect);
+        
         updateButtonBackground(switchToEnigmaBtn, switchToDefaultBtn, switchToPersonaBtn)
     }
 
     // 페르소나 핸드아웃
     function switchToPersonaHandout() {
-        handoutPreview.classList.add('general-handout');
-        handoutPreview.classList.remove('scp-handout');
-        handoutEditor.classList.add('general-handout');
-        handoutEditor.classList.remove('scp-handout');
-
         loadPersonaHandoutContent();
+
         updateContent('nameInput', 'nameContent', '', adjustFontSizeNameShock);
         updateContent('missionInput', 'missionContent', '', adjustFontSizeMission);
         updateContent('personaInput', 'personaContent', '', adjustFontSizeNameShock);
@@ -360,58 +350,58 @@ document.addEventListener('DOMContentLoaded', function() {
     // 에니그마 핸드아웃 HTML 불러오기
     function loadEnigmaHandoutContent() {
         handoutPreview.innerHTML = `
-            <section class="handout-preview__container">
-                <div class="handout-card">
-                    <div class="handout-card__front">
-                        <div class="handout-card__front-header">Handout</div>
-                        <div class="handout-card__front-content">
-                            정<br />
-                            보<br />
-                            재<br />
-                            해<br />
+            <div class="handout-card">
+                <div class="handout-card__front">
+                    <div class="handout-card__front-header">에니그마</div>
+                    <div class="handout-card__front-content">
+                        <div class="handout-card__name-section">
+                            <span class="label__name">이름</span>
+                            <div class="content__name" id="nameContent"></div>
+                        </div>
+                        <div class="handout-card__mission-section">
+                            <span class="label__mission">위장</span>
+                            <div class="content__mission" id="missionContent"></div>
                         </div>
                     </div>
-                    <div class="handout-card__behind">
-                        <div class="handout-card__behind-header">Handout</div>
-                        <div class="handout-card__behind-content">
-                            <div class="handout-card__secret-section">비밀</div>
-
-                            <div class="handout-card__shock-secret-section">
-                                <div class="handout-card__range-section">
-                                    <div class="handout-card__shock-section">
-                                        <span class="label__shock">쇼크</span>
-                                        <div class="content__shock" id="shockContent"></div>
-                                    </div>
-                                    <div class="handout-card__shock-section">
-                                        <span class="label__infection">2차감염</span>
-                                        <div class="content__infection" id="infectionContent"></div>
-                                    </div>
-                                </div>
-                                
-                                <div class="content__secret" id="secretContent"></div>
+                </div>
+                <div class="handout-card__behind">
+                    <div class="handout-card__behind-header">에니그마</div>
+                    <div class="handout-card__behind-content">
+                        <div class="handout-card__enigma-section">
+                            <span class="label__enigma">이름</span>
+                            <div class="content__enigma" id="enigmaContent"></div>
+                        </div>
+                        <div class="handout-card__secret-section">전력</div>
+                        <div class="handout-card__enigma-info-section">
+                            <div class="handout-card__condition-section">
+                                <span class="label__condition">---------해제 조건---------</span>
+                                <div class="content__condition" id="conditionContent"></div>
                             </div>
-
-                            <div class="handout-card__behind-footer">
-                                <div class="footer__disclaimer">
-                                    이 비밀을<br>
-                                    스스로 밝힐 수는 없다.
-                                </div>
-                                <i class="fa-solid fa-hand"></i>
+                            <div class="handout-card__effect-section">
+                                <span class="label__effect">------------효과------------</span>
+                                <div class="content__effect" id="effectContent"></div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </section>
+            </div>
         `;
 
         handoutEditor.innerHTML = `
             <div class="handout-editor__inputs">
+                <div class="handout-editor__front-inputs">
+                    <p class="editor-section__header">앞면</p>
+                    <div class="input-group__front">
+                        <textarea id="nameInput" placeholder="이름을 입력하세요." autocomplete="off"></textarea>
+                        <textarea id="missionInput" placeholder="위장 정보를 입력하세요." autocomplete="off"></textarea>
+                    </div>
+                </div>
                 <div class="handout-editor__behind-inputs">
                     <p class="editor-section__header">뒷면</p>
                     <div class="input-group__behind">
-                        <textarea id="shockInput" placeholder="쇼크를 입력하세요." autocomplete="off"></textarea>
-                        <textarea id="infectionInput" placeholder="감염정보를 입력하세요." autocomplete="off"></textarea>
-                        <textarea id="secretInput" placeholder="비밀정보를 입력하세요." autocomplete="off"></textarea>
+                        <textarea id="enigmaInput" placeholder="이름을 입력하세요." autocomplete="off"></textarea>
+                        <textarea id="conditionInput" placeholder="조건을 입력하세요." autocomplete="off"></textarea>
+                        <textarea id="effectInput" placeholder="효과를 입력하세요." autocomplete="off"></textarea>
                     </div>
                 </div>
             </div>
@@ -492,7 +482,6 @@ document.addEventListener('DOMContentLoaded', function() {
         submitBtn.addEventListener('click', submitPersonaHandout);
     }
 
-
     // 일반 핸드아웃 초기화
     function resetHandout(){
         const textareas = document.querySelectorAll('textarea');
@@ -516,7 +505,7 @@ document.addEventListener('DOMContentLoaded', function() {
         textareas.forEach(function(textarea) {
             textarea.value = '';
         });        
-        const contentElements = [ 'shockContent', 'infectionContent', 'secretContent'];
+        const contentElements = [ 'nameContent', 'missionContent', 'enigmaContent', 'conditionContent', 'effectContent'];
         contentElements.forEach(function(id) {
             const element = document.getElementById(id);
             if (element) {
@@ -569,21 +558,24 @@ document.addEventListener('DOMContentLoaded', function() {
     function submitSCPHandout(){
         const outputContainer = document.querySelector('.card__container');
 
-        const shockInput = document.getElementById('shockInput').value.trim();
-        const infectionInput = document.getElementById('infectionInput').value.trim();
-        const secretInput = document.getElementById('secretInput').value.trim();
+        const nameInput = document.getElementById('nameInput').value.trim();
+        const missionInput = document.getElementById('missionInput').value.trim();
+        const enigmaInput = document.getElementById('enigmaInput').value.trim();
+        const conditionInput = document.getElementById('conditionInput').value.trim();
+        const effectInput = document.getElementById('effectInput').value.trim();
 
-        const newCardHTML = createSCPHandoutCard(shockInput, infectionInput, secretInput);
+        const newCardHTML = createEnigmaHandoutCard(nameInput, missionInput, enigmaInput, conditionInput, effectInput);
         outputContainer.innerHTML += newCardHTML;
 
         // 입력 필드 초기화
         document.querySelectorAll('textarea').forEach(textarea => textarea.value = '');
 
         // 미리보기 내용 삭제
-        document.getElementById('shockContent').textContent = '';
-        document.getElementById('infectionContent').textContent = '';
-        document.getElementById('secretContent').textContent = '';
-
+        document.getElementById('nameContent').textContent = '';
+        document.getElementById('missionContent').textContent = '';
+        document.getElementById('enigmaContent').textContent = '';
+        document.getElementById('conditionContent').textContent = '';
+        document.getElementById('effectContent').textContent = '';
     }
 
     // 페르소나 핸드아웃 등록
@@ -676,8 +668,25 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // SCP 핸드아웃 뒷면 비밀정보 폰트 크기 조절
-    function adjustFontSizeSecretSCP(element, text) {
+    // 에니그마 뒷면 해제 조건 폰트 크기 조절
+    function adjustFontSizeCondition(element, text) {
+        if (text.length > 55) {
+            element.style.fontSize = '7px';
+            element.style.lineHeight = '1.1em';
+        } else if (text.length > 25) {
+            element.style.fontSize = '8px';
+            element.style.lineHeight = '1.2em';
+        } else if (text.length > 12) {
+            element.style.fontSize = '12px';
+            element.style.lineHeight = '1.1em';
+        } else { // 디폴트
+            element.style.fontSize = '14px'; 
+            element.style.lineHeight = '1.5em'; 
+        }
+    }
+
+    // 에니그마 핸드아웃 뒷면 효과 폰트 크기 조절
+    function adjustFontSizeEffect(element, text) {
         if (text.length > 132) {
             element.style.fontSize = '8px';
             element.style.lineHeight = '1.1em';

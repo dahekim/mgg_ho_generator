@@ -228,6 +228,39 @@ nav {
     text-overflow: ellipsis;
 }
 
+.handout-card__enigma-section {
+    display: flex;
+    position: relative;
+    justify-content: space-between; 
+    border: 1px solid var(--black-color);
+    margin-bottom: 2px;
+    height: 25px;
+    background-color: var(--white-color);
+}
+
+.handout-card__enigma-section .label__enigma {
+    display: flex;
+    border-right: 1px solid var(--black-color);
+    padding: 5px 10px;
+    font-weight: 800;
+    align-items: center;
+    font-size: 0.6rem;
+}
+
+.handout-card__enigma-section .content__enigma {
+    height: 100%;                 
+    width: 100%;                  
+    display: flex;
+    align-items: center;
+    flex: 1 1 60%; 
+    padding-left: 5px; 
+    padding-top: 1px;
+    box-sizing: border-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
 .handout-card__persona-section {
     display: flex;
     position: relative;
@@ -310,12 +343,13 @@ nav {
 .handout-card__secret-section {
     color: var(--white-color);
     font-size: var(--font-medium);
-    padding: 5px;
     font-weight: 800;
     text-align: center;
+    margin-bottom: 3px;
 }
 
-.handout-card__shock-secret-section {
+.handout-card__shock-secret-section,
+.handout-card__enigma-info-section {
     display: flex;
     flex-direction: column;
     background-color: var(--white-color);
@@ -364,6 +398,49 @@ nav {
     -webkit-line-clamp: 18;
     -webkit-box-orient: vertical;
 }
+
+.handout-card__condition-section,
+.handout-card__effect-section {
+    display: flex;    
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.handout-card__condition-section{
+    height: 50px;
+}
+
+.handout-card__effect-section {
+    height: 147px;
+}
+
+.label__condition,
+.label__effect {
+    font-weight: 800; 
+    text-align: center;
+}
+
+.content__condition,
+.content__effect {
+    flex-grow: 1; 
+    padding: 3px 4px;
+    box-sizing: border-box;
+    overflow-wrap: break-word;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+}
+
+.content__condition{
+    -webkit-line-clamp: 4;
+}
+
+.content__effect{
+    -webkit-line-clamp: 15;
+}
+
+
 
 /* 부모 요소의 스타일 */
 .content__mission, .content__secret {
@@ -429,167 +506,6 @@ nav {
     color: var(--white-color);
 }
 
-.scp-handout .handout-card__front {
-    width: var(--card-width);
-    height: var(--card-height);
-    background-color: var(--white-color);
-    padding: 4px 5px;
-    border: 1px solid var(--black-color);
-    display: flex;
-    flex-direction: column;
-}
-
-.scp-handout .handout-card__front-header {
-    color: var(--black-color);
-    font-size: var(--font-large);
-    font-weight: 800;
-    text-align: center;
-}
-
-.scp-handout .handout-card__front-content {
-    background-color: var(--black-color);
-    box-shadow: 0 0 0 1px var(--white-color), 0 0 0 2px var(--black-color);
-    margin: 4px;
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-    color: var(--white-color);
-    align-items: center;
-    justify-content: center;
-    font-weight: 800;
-    font-size: 42px;
-    line-height: 3.7rem;
-}
-
-.scp-handout .handout-card__behind {
-    width: var(--card-width);
-    height: var(--card-height);
-    background-color: var(--black-color);
-    padding: 4px 5px;
-    display: flex;
-    flex-direction: column;
-}
-
-.scp-handout .handout-card__behind-header {
-    color: var(--white-color);
-    font-size: var(--font-large);
-    padding: 5px;
-    font-weight: 800;
-    text-align: center;
-}
-
-.scp-handout .handout-card__behind-content {
-    border: 3px solid var(--white-color);
-    padding: 2px;
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-}
-
-.scp-handout .handout-card__secret-section {
-    color: var(--white-color);
-    font-size: var(--font-medium);
-    padding: 5px;
-    font-weight: 800;
-    text-align: center;
-}
-
-.scp-handout .handout-card__shock-secret-section {
-    display: flex;
-    flex-direction: column;
-    background-color: var(--white-color);
-    height: 100%;
-    margin-bottom: 2px;
-}
-
-.scp-handout .handout-card__shock-secret-section .handout-card__shock-section {
-    display: flex;
-    position: relative;
-    justify-content: space-between;
-    border-bottom: 1px solid var(--black-color);
-    height: 25px;
-}
-
-.scp-handout .handout-card__shock-section span{
-    align-items: center;
-}
-
-.scp-handout .handout-card__shock-section .label__shock {
-    display: flex;
-    border-right: 1px solid var(--black-color);
-    padding: 5px 10px;
-    font-weight: 800;
-    flex: 1 1 20%;
-    align-items: center;
-}
-
-.scp-handout .handout-card__shock-section .content__shock {
-    display: flex;
-    align-items: center;
-    flex: 1 1 60%;
-    padding-left: 5px;
-    padding-top: 1px;
-    height: 100%;                 
-    width: 100%;                  
-    box-sizing: border-box;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.scp-handout .handout-card__shock-section .label__infection {
-    display: flex;
-    border-right: 1px solid var(--black-color);
-    padding-left: 7px;
-    font-weight: 800;
-    font-size: 9px;
-    flex: 1 1 20%;
-}
-
-.scp-handout .handout-card__shock-section .content__infection {
-    display: flex;
-    align-items: center;
-    flex: 1 1 60%;
-    padding-left: 5px;
-    padding-top: 1px;
-    height: 100%;                 
-    width: 100%;                  
-    box-sizing: border-box;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.scp-handout .handout-card__shock-secret-section .content__secret {
-    height: 123px;
-    padding: 2px 5px;
-    border-top: 1px solid var(--black-color);
-    margin-top: 1px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 15;
-    -webkit-box-orient: vertical;
-}
-
-.scp-handout .handout-card__behind-footer {
-    color: var(--white-color);
-    display: flex;
-    padding: 2px 4px;
-    justify-content: space-around;
-}
-
-.scp-handout .handout-card__behind-footer .footer__disclaimer {
-    text-align: center;
-    margin-top: 5px;
-    font-weight: 800;
-    font-size: var(--font-small);
-}
-
-.scp-handout .handout-card__behind-footer i {
-    justify-content: center;
-    font-size: xx-large;
-    transform: rotate(-20deg);
-}
-
 textarea {
     height: 32px;
     resize: none;
@@ -613,6 +529,10 @@ textarea:focus {
 }
 
 #secretInput {
+    flex-grow: 1;
+}
+
+#effectInput {
     flex-grow: 1;
 }
 
