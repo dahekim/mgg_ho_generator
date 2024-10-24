@@ -191,7 +191,7 @@ document.addEventListener('DOMContentLoaded', function() {
         selectedBtn.style.color = '#fff';
         selectedBtn.style.fontWeight = '700';
         
-        otherBtn.style.backgroundColor = '';            
+        otherBtn.style.backgroundColor = '';
         otherBtn.style.color = '';
         otherBtn.style.borderColor= '';  
         otherBtn.style.fontWeight = '';
@@ -201,7 +201,6 @@ document.addEventListener('DOMContentLoaded', function() {
     function switchToDefaultHandout() {        
         loadDefaultHandoutContent();
 
-        updateContent('nameInput', 'nameContent', '', adjustFontSizeNameShock);
         updateContent('missionInput', 'missionContent', '', adjustFontSizeMission);
         updateContent('secretInput', 'secretContent', '', adjustFontSizeSecret);
 
@@ -230,28 +229,16 @@ document.addEventListener('DOMContentLoaded', function() {
         handoutPreview.innerHTML = `
             <div class="handout-card">
                 <div class="handout-card__front">
-                    <div class="handout-card__front-header">핸드아웃</div>
+                    <div class="handout-card__front-header">개요</div>
                     <div class="handout-card__front-content">
-                        <div class="handout-card__name-section">
-                            <span class="label__name">이름</span>
-                            <div class="content__name" id="nameContent"></div>
-                        </div>
                         <div class="handout-card__mission-section">
-                            <span class="label__mission">사명</span>
                             <div class="content__mission" id="missionContent"></div>
                         </div>
                     </div>
                 </div>
                 <div class="handout-card__behind">
-                    <div class="handout-card__behind-header">핸드아웃</div>
-                    <div class="handout-card__behind-footer">
-                        <div class="footer__disclaimer">
-                            이 비밀을<br>
-                            스스로 밝힐 수는 없다.
-                        </div>
-                    </div>
+                    <div class="handout-card__behind-header">비밀</div>
                     <div class="handout-card__behind-content">
-                        <div class="handout-card__secret-section">비밀</div>
                         <div class="handout-card__shock-secret-section">
                             <div class="content__secret" id="secretContent"></div>
                         </div>
@@ -265,8 +252,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <div class="handout-editor__front-inputs">
                     <p class="editor-section__header">앞면</p>
                     <div class="input-group__front">
-                        <textarea id="nameInput" placeholder="이름을 입력하세요." autocomplete="off"></textarea>
-                        <textarea id="missionInput" placeholder="사명 정보를 입력하세요." autocomplete="off"></textarea>
+                        <textarea id="missionInput" placeholder="개요 정보를 입력하세요." autocomplete="off"></textarea>
                     </div>
                 </div>
                 <div class="handout-editor__behind-inputs">
@@ -368,7 +354,7 @@ document.addEventListener('DOMContentLoaded', function() {
             textarea.value = ''; 
         });
 
-        const contentElements = ['nameContent', 'missionContent', 'secretContent'];
+        const contentElements = ['infoContent', 'secretContent'];
         contentElements.forEach(function(id) {
             const element = document.getElementById(id);
             if (element) {
@@ -392,7 +378,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
-
 
     // 일반 핸드아웃 등록
     function submitHandout(){
