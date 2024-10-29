@@ -537,9 +537,13 @@ document.addEventListener('DOMContentLoaded', function() {
     function submitHandout(){
         const outputContainer = document.querySelector('.card__container');
 
-        const nameInput = document.getElementById('nameInput').value.trim();
-        const missionInput = document.getElementById('missionInput').value.trim();
-        const secretInput = document.getElementById('secretInput').value.trim();
+        let nameInput = document.getElementById('nameInput').value.trim();
+        let missionInput = document.getElementById('missionInput').value.trim();
+        let secretInput = document.getElementById('secretInput').value.trim();
+
+        // nameInput = nameInput.replace(/\n/g, '<br>');
+        missionInput = missionInput.replace(/\n/g, '<br>');
+        secretInput = secretInput.replace(/\n/g, '<br>');
 
         const newCardHTML = createHandoutCard(nameInput, missionInput, secretInput);
         
@@ -558,11 +562,18 @@ document.addEventListener('DOMContentLoaded', function() {
     function submitSCPHandout(){
         const outputContainer = document.querySelector('.card__container');
 
-        const nameInput = document.getElementById('nameInput').value.trim();
-        const missionInput = document.getElementById('missionInput').value.trim();
-        const enigmaInput = document.getElementById('enigmaInput').value.trim();
-        const conditionInput = document.getElementById('conditionInput').value.trim();
-        const effectInput = document.getElementById('effectInput').value.trim();
+        let nameInput = document.getElementById('nameInput').value.trim();
+        let missionInput = document.getElementById('missionInput').value.trim();
+        let enigmaInput = document.getElementById('enigmaInput').value.trim();
+        let conditionInput = document.getElementById('conditionInput').value.trim();
+        let effectInput = document.getElementById('effectInput').value.trim();
+
+        // nameInput = nameInput.replace(/\n/g, '<br>');
+        missionInput = missionInput.replace(/\n/g, '<br>');
+        // enigmaInput = enigmaInput.replace(/\n/g, '<br>');
+        conditionInput = conditionInput.replace(/\n/g, '<br>');
+        effectInput = effectInput.replace(/\n/g, '<br>');
+
 
         const newCardHTML = createEnigmaHandoutCard(nameInput, missionInput, enigmaInput, conditionInput, effectInput);
         outputContainer.innerHTML += newCardHTML;
@@ -582,10 +593,15 @@ document.addEventListener('DOMContentLoaded', function() {
     function submitPersonaHandout(){
         const outputContainer = document.querySelector('.card__container');
 
-        const nameInput = document.getElementById('nameInput').value.trim();
-        const missionInput = document.getElementById('missionInput').value.trim();
-        const personaInput = document.getElementById('personaInput').value.trim();
-        const secretInput = document.getElementById('secretInput').value.trim();
+        let nameInput = document.getElementById('nameInput').value.trim();
+        let missionInput = document.getElementById('missionInput').value.trim();
+        let personaInput = document.getElementById('personaInput').value.trim();
+        let secretInput = document.getElementById('secretInput').value.trim();
+
+        // nameInput = nameInput.replace(/\n/g, '<br>');
+        missionInput = missionInput.replace(/\n/g, '<br>');
+        // personaInput = personaInput.replace(/\n/g, '<br>');
+        secretInput = secretInput.replace(/\n/g, '<br>');
 
         const newCardHTML = createPersonaHandoutCard(nameInput, missionInput, personaInput, secretInput);
         

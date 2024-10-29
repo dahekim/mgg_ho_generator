@@ -426,10 +426,15 @@ document.addEventListener('DOMContentLoaded', function() {
     function submitHandout(){
         const outputContainer = document.querySelector('.card__container');
 
-        const nameInput = document.getElementById('nameInput').value.trim();
-        const missionInput = document.getElementById('missionInput').value.trim();
-        const shockInput = document.getElementById('shockInput').value.trim();
-        const secretInput = document.getElementById('secretInput').value.trim();
+        let nameInput = document.getElementById('nameInput').value.trim();
+        let missionInput = document.getElementById('missionInput').value.trim();
+        let shockInput = document.getElementById('shockInput').value.trim();
+        let secretInput = document.getElementById('secretInput').value.trim();
+        
+        // nameInput = nameInput.replace(/\n/g, '<br>');
+        missionInput = missionInput.replace(/\n/g, '<br>');
+        // shockInput = shockInput.replace(/\n/g, '<br>');
+        secretInput = secretInput.replace(/\n/g, '<br>');
 
         const newCardHTML = createHandoutCard(nameInput, missionInput, shockInput, secretInput);
         
@@ -449,9 +454,13 @@ document.addEventListener('DOMContentLoaded', function() {
     function submitSCPHandout(){
         const outputContainer = document.querySelector('.card__container');
 
-        const shockInput = document.getElementById('shockInput').value.trim();
-        const infectionInput = document.getElementById('infectionInput').value.trim();
-        const secretInput = document.getElementById('secretInput').value.trim();
+        let shockInput = document.getElementById('shockInput').value.trim();
+        let infectionInput = document.getElementById('infectionInput').value.trim();
+        let secretInput = document.getElementById('secretInput').value.trim();
+
+        // shockInput = shockInput.replace(/\n/g, '<br>');
+        // infectionInput = infectionInput.replace(/\n/g, '<br>');
+        secretInput = secretInput.replace(/\n/g, '<br>');
 
         const newCardHTML = createSCPHandoutCard(shockInput, infectionInput, secretInput);
         outputContainer.innerHTML += newCardHTML;
