@@ -1,7 +1,7 @@
 // 특수 괄호 복사 
-document.addEventListener('DOMContentLoaded', function() {    
+document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('.bracket-btn').forEach(button => {
-        button.addEventListener('click', function() {
+        button.addEventListener('click', function () {
             const bracketText = this.getAttribute('data-bracket');
             copyToClipboard(bracketText);
         });
@@ -30,8 +30,7 @@ function getFontSize(element) {
 }
 
 // 일반 핸드아웃 카드 생성 함수
-function createHandoutCard(name, mission, secret) {
-    const previewNameContent = document.getElementById('nameContent');
+function createHandoutCard(mission, secret) {
     const previewMissionContent = document.getElementById('missionContent');
     const previewSecretContent = document.getElementById('secretContent');
 
@@ -39,12 +38,8 @@ function createHandoutCard(name, mission, secret) {
         <div class="handout-card">
             <button class="delete-btn">X</button>
             <div class="handout-card__front">
-                <div class="handout-card__front-header">핸드아웃</div>
+                <div class="handout-card__front-header">개요</div>
                 <div class="handout-card__front-content">
-                    <div class="handout-card__name-section">
-                        <span class="label__name">이름</span>
-                        <div class="content__name" style="font-size: ${getFontSize(previewNameContent)}">${name}</div>
-                    </div>
                     <div class="handout-card__mission-section">
                         <span class="label__mission">사명</span>
                         <div class="content__mission" style="font-size: ${getFontSize(previewMissionContent)}">${mission}</div>
@@ -52,13 +47,7 @@ function createHandoutCard(name, mission, secret) {
                 </div>
             </div>
             <div class="handout-card__behind">
-                <div class="handout-card__behind-header">핸드아웃</div>
-                <div class="handout-card__behind-footer">
-                    <div class="footer__disclaimer">
-                        이 비밀을<br>
-                        스스로 밝힐 수는 없다.
-                    </div>
-                </div>
+                <div class="handout-card__behind-header">비밀</div>
                 <div class="handout-card__behind-content">
                     <div class="handout-card__secret-section">비밀</div>
                     <div class="handout-card__shock-secret-section">
@@ -125,7 +114,7 @@ function createEnigmaHandoutCard(name, mission, enigma, condition, effect) {
 // 핸드아웃 개별 삭제
 document.addEventListener('DOMContentLoaded', () => {
     const outputContainer = document.querySelector('.handout-output__container');
-    outputContainer.addEventListener('click', function(event) {
+    outputContainer.addEventListener('click', function (event) {
         if (event.target.classList.contains('delete-btn')) {
             const cardToRemove = event.target.closest('.handout-card');
             if (cardToRemove) {
@@ -136,11 +125,11 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // 인쇄 프리뷰 페이지 초기화
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const resetButton = document.querySelector('.handout-output__reset-btn');
     const cardContainer = document.querySelector('.card__container');
 
-    resetButton.addEventListener('click', function() {
+    resetButton.addEventListener('click', function () {
         cardContainer.innerHTML = '';
     });
 });
@@ -158,18 +147,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const modal = document.getElementById("comingSoonModal");
     const comingSoonLinks = document.querySelectorAll('.coming-soon');
     comingSoonLinks.forEach(link => {
-        link.addEventListener('click', function(event) {
-            event.preventDefault(); 
-            modal.style.display = "block"; 
+        link.addEventListener('click', function (event) {
+            event.preventDefault();
+            modal.style.display = "block";
             setTimeout(() => {
                 modal.style.display = 'none';
-            }, 800); 
+            }, 800);
         });
     });
 
 
     // 모달 바깥을 클릭하면 모달을 닫음
-    window.onclick = function(event) {
+    window.onclick = function (event) {
         if (event.target === modal) {
             modal.style.display = "none";
         }
@@ -177,28 +166,28 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // 일반 <-> 단장 핸드아웃 변경
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const switchToDefaultBtn = document.getElementById('switchToDefault');
-    const switchToSheetBtn = document.getElementById('switchToSheet');    
+    const switchToSheetBtn = document.getElementById('switchToSheet');
 
     const handoutPreview = document.getElementById('handoutPreview');
     const handoutEditor = document.getElementById('handoutEditor');
 
     // 버튼 배경색 업데이트
     function updateButtonBackground(selectedBtn, otherBtn) {
-        selectedBtn.style.borderColor= '#ff0000';  
-        selectedBtn.style.backgroundColor = '#ff0000';  
+        selectedBtn.style.borderColor = '#ff0000';
+        selectedBtn.style.backgroundColor = '#ff0000';
         selectedBtn.style.color = '#fff';
         selectedBtn.style.fontWeight = '700';
-        
+
         otherBtn.style.backgroundColor = '';
         otherBtn.style.color = '';
-        otherBtn.style.borderColor= '';  
+        otherBtn.style.borderColor = '';
         otherBtn.style.fontWeight = '';
     }
 
     // 일반 핸드아웃 전환
-    function switchToDefaultHandout() {        
+    function switchToDefaultHandout() {
         loadDefaultHandoutContent();
 
         updateContent('missionInput', 'missionContent', '', adjustFontSizeMission);
@@ -206,7 +195,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         updateButtonBackground(switchToDefaultBtn, switchToSheetBtn)
     }
-    
+
     // 단장 핸드아웃 전환
     function switchToSheetHandout() {
         loadSheetHandoutContent();
@@ -216,14 +205,14 @@ document.addEventListener('DOMContentLoaded', function() {
         updateContent('enigmaInput', 'enigmaContent', '', adjustFontSizeNameShock);
         updateContent('conditionInput', 'conditionContent', '', adjustFontSizeCondition);
         updateContent('effectInput', 'effectContent', '', adjustFontSizeEffect);
-        
+
         updateButtonBackground(switchToSheetBtn, switchToDefaultBtn)
     }
 
     switchToDefaultBtn.addEventListener('click', switchToDefaultHandout);
     switchToSheetBtn.addEventListener('click', switchToSheetHandout);
 
-    
+
     // 일반 핸드아웃 HTML 불러오기
     function loadDefaultHandoutContent() {
         handoutPreview.innerHTML = `
@@ -270,7 +259,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         const resetBtn = document.querySelector('.handout-editor__reset-btn');
         const submitBtn = document.querySelector('.handout-editor__submit-btn');
-        
+
         resetBtn.addEventListener('click', resetHandout);
         submitBtn.addEventListener('click', submitHandout);
     }
@@ -280,36 +269,19 @@ document.addEventListener('DOMContentLoaded', function() {
         handoutPreview.innerHTML = `
             <div class="handout-card">
                 <div class="handout-card__front">
-                    <div class="handout-card__front-header">에니그마</div>
+                    <div class="handout-card__front-header">개요</div>
                     <div class="handout-card__front-content">
-                        <div class="handout-card__name-section">
-                            <span class="label__name">이름</span>
-                            <div class="content__name" id="nameContent"></div>
-                        </div>
                         <div class="handout-card__mission-section">
-                            <span class="label__mission">위장</span>
                             <div class="content__mission" id="missionContent"></div>
                         </div>
                     </div>
                 </div>
                 <div class="handout-card__behind">
-                    <div class="handout-card__behind-header">에니그마</div>
+                    <div class="handout-card__behind-header">비밀</div>
                     <div class="handout-card__behind-content">
-                        <div class="handout-card__enigma-section">
-                            <span class="label__enigma">이름</span>
-                            <div class="content__enigma" id="enigmaContent"></div>
-                        </div>
                         <div class="handout-card__secret-section">전력</div>
-                        <div class="handout-card__enigma-info-section">
-                            <div class="handout-card__condition-section">
-                                <span class="label__condition">---------해제 조건---------</span>
-                                <div class="content__condition" id="conditionContent"></div>
-                            </div>
-                            <div class="handout-card__effect-section">
-                                <span class="label__effect">------------효과------------</span>
-                                <div class="content__effect" id="effectContent"></div>
-                            </div>
-                        </div>
+                        <div class="handout-card__secret-info-section"></div>
+                        <div class="handout-card__sheet-info-section"></div>
                     </div>
                 </div>
             </div>
@@ -346,16 +318,16 @@ document.addEventListener('DOMContentLoaded', function() {
         resetBtn.addEventListener('click', resetSheetHandout);
         submitBtn.addEventListener('click', submitSheetHandout);
     }
-    
+
     // 일반 핸드아웃 초기화
-    function resetHandout(){
+    function resetHandout() {
         const textareas = document.querySelectorAll('textarea');
-        textareas.forEach(function(textarea) {
-            textarea.value = ''; 
+        textareas.forEach(function (textarea) {
+            textarea.value = '';
         });
 
-        const contentElements = ['infoContent', 'secretContent'];
-        contentElements.forEach(function(id) {
+        const contentElements = ['missionContent', 'secretContent'];
+        contentElements.forEach(function (id) {
             const element = document.getElementById(id);
             if (element) {
                 element.textContent = '';
@@ -365,13 +337,13 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // 단장 핸드아웃 초기화
-    function resetSheetHandout(){
+    function resetSheetHandout() {
         const textareas = document.querySelectorAll('textarea');
-        textareas.forEach(function(textarea) {
+        textareas.forEach(function (textarea) {
             textarea.value = '';
-        });        
-        const contentElements = [ 'nameContent', 'missionContent', 'enigmaContent', 'conditionContent', 'effectContent'];
-        contentElements.forEach(function(id) {
+        });
+        const contentElements = ['nameContent', 'missionContent', 'enigmaContent', 'conditionContent', 'effectContent'];
+        contentElements.forEach(function (id) {
             const element = document.getElementById(id);
             if (element) {
                 element.textContent = '';
@@ -380,28 +352,29 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // 일반 핸드아웃 등록
-    function submitHandout(){
+    function submitHandout() {
         const outputContainer = document.querySelector('.card__container');
 
-        const nameInput = document.getElementById('nameInput').value.trim();
-        const missionInput = document.getElementById('missionInput').value.trim();
-        const secretInput = document.getElementById('secretInput').value.trim();
+        let missionInput = document.getElementById('missionInput').value.trim();
+        let secretInput = document.getElementById('secretInput').value.trim();
 
-        const newCardHTML = createHandoutCard(nameInput, missionInput, secretInput);
-        
+        missionInput = missionInput.replace(/\n/g, '<br>');
+        secretInput = secretInput.replace(/\n/g, '<br>');
+
+        const newCardHTML = createHandoutCard(missionInput, secretInput);
+
         outputContainer.innerHTML += newCardHTML;
 
         // 입력 필드 초기화
         document.querySelectorAll('textarea').forEach(textarea => textarea.value = '');
 
         // 미리보기 내용 삭제
-        document.getElementById('nameContent').textContent = '';
         document.getElementById('missionContent').textContent = '';
         document.getElementById('secretContent').textContent = '';
     }
 
     // 단장 핸드아웃 등록
-    function submitSheetHandout(){
+    function submitSheetHandout() {
         const outputContainer = document.querySelector('.card__container');
 
         const nameInput = document.getElementById('nameInput').value.trim();
@@ -452,8 +425,8 @@ document.addEventListener('DOMContentLoaded', function() {
             element.style.fontSize = '12px';
             element.style.lineHeight = '1.1em';
         } else { // 디폴트
-            element.style.fontSize = '14px'; 
-            element.style.lineHeight = '1.5em'; 
+            element.style.fontSize = '14px';
+            element.style.lineHeight = '1.5em';
         }
     }
 
@@ -469,8 +442,8 @@ document.addEventListener('DOMContentLoaded', function() {
             element.style.fontSize = '12px';
             element.style.lineHeight = '1.3em';
         } else { // 디폴트
-            element.style.fontSize = '14px'; 
-            element.style.lineHeight = '1.5em'; 
+            element.style.fontSize = '14px';
+            element.style.lineHeight = '1.5em';
         }
     }
 
@@ -486,8 +459,8 @@ document.addEventListener('DOMContentLoaded', function() {
             element.style.fontSize = '12px';
             element.style.lineHeight = '1.3em';
         } else { // 디폴트
-            element.style.fontSize = '14px'; 
-            element.style.lineHeight = '1.5em'; 
+            element.style.fontSize = '14px';
+            element.style.lineHeight = '1.5em';
         }
     }
 
@@ -503,8 +476,8 @@ document.addEventListener('DOMContentLoaded', function() {
             element.style.fontSize = '12px';
             element.style.lineHeight = '1.1em';
         } else { // 디폴트
-            element.style.fontSize = '14px'; 
-            element.style.lineHeight = '1.5em'; 
+            element.style.fontSize = '14px';
+            element.style.lineHeight = '1.5em';
         }
     }
 
@@ -520,11 +493,11 @@ document.addEventListener('DOMContentLoaded', function() {
             element.style.fontSize = '12px';
             element.style.lineHeight = '1.3em';
         } else { // 디폴트
-            element.style.fontSize = '14px'; 
-            element.style.lineHeight = '1.5em'; 
+            element.style.fontSize = '14px';
+            element.style.lineHeight = '1.5em';
         }
     }
-    
+
     // 페이지 로드 시 일반 핸드아웃 불러오도록 설정
     switchToDefaultHandout();
 });
