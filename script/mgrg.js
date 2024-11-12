@@ -26,8 +26,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
 // 프리뷰 카드의 폰트 크기 가져옴
 function getFontSize(element) {
-    return window.getComputedStyle(element).fontSize;
+    if (element instanceof Element) {
+        return window.getComputedStyle(element).fontSize;
+    } else {
+        return null; // 또는 기본 폰트 크기 값 지정
+    }
 }
+
 
 // 일반 핸드아웃 카드 생성 함수
 function createHandoutCard(mission, secret) {
@@ -41,7 +46,6 @@ function createHandoutCard(mission, secret) {
                 <div class="handout-card__front-header">개요</div>
                 <div class="handout-card__front-content">
                     <div class="handout-card__mission-section">
-                        <span class="label__mission">사명</span>
                         <div class="content__mission" style="font-size: ${getFontSize(previewMissionContent)}">${mission}</div>
                     </div>
                 </div>
@@ -49,7 +53,6 @@ function createHandoutCard(mission, secret) {
             <div class="handout-card__behind">
                 <div class="handout-card__behind-header">비밀</div>
                 <div class="handout-card__behind-content">
-                    <div class="handout-card__secret-section">비밀</div>
                     <div class="handout-card__shock-secret-section">
                         <div class="content__secret" style="font-size: ${getFontSize(previewSecretContent)}">${secret}</div>
                     </div>
@@ -57,50 +60,72 @@ function createHandoutCard(mission, secret) {
             </div>
         </div>
     `;
-
     return newCardHTML;
 }
 
-// 에니그마 핸드아웃 카드 생성 함수
-function createEnigmaHandoutCard(name, mission, enigma, condition, effect) {
-    const previewNameContent = document.getElementById('nameContent');
+// 단장 핸드아웃 카드 생성 함수
+function createEnigmaHandoutCard(mission, secret, sheetname, initdepth, atk, def, bas, mp, magic, area, skill) {
     const previewMissionContent = document.getElementById('missionContent');
-    const previewEnigmaContent = document.getElementById('enigmaContent');
-    const previewConditionContent = document.getElementById('conditionContent');
-    const previewEffectContent = document.getElementById('effectContent');
+    const previewSecretContent = document.getElementById('secretnameContent');
+    const previewSheetnameContent = document.getElementById('sheetnameContent');
+    const previewInitdepthContent = document.getElementById('initdepthContent');
+    const previewAtkContent = document.getElementById('atkContent');
+    const previewDefContent = document.getElementById('defContent');
+    const previewBasContent = document.getElementById('basContent');
+    const previewMpContent = document.getElementById('mpContent');
+    const previewMagicContent = document.getElementById('magicContent');
+    const previewAreaContent = document.getElementById('areaContent');
+    const previewSkillContent = document.getElementById('skillContent');
 
     const newCardHTML = `
         <div class="handout-card">
             <button class="delete-btn">X</button>
             <div class="handout-card__front">
-                <div class="handout-card__front-header">에니그마</div>
+                <div class="handout-card__front-header">개요</div>
                 <div class="handout-card__front-content">
-                    <div class="handout-card__name-section">
-                        <span class="label__name">이름</span>
-                        <div class="content__name" style="font-size: ${getFontSize(previewNameContent)}">${name}</div>
-                    </div>
                     <div class="handout-card__mission-section">
-                        <span class="label__mission">위장</span>
-                        <div class="content__mission" style="font-size: ${getFontSize(previewMissionContent)}">${mission}</div>
+                        <div class="content__mission" style="font-size: ${getFontSize(previewSecretContent)}">${mission}</div>
                     </div>
                 </div>
             </div>
             <div class="handout-card__behind">
-                <div class="handout-card__behind-header">에니그마</div>
+                <div class="handout-card__behind-header">비밀</div>
                 <div class="handout-card__behind-content">
-                    <div class="handout-card__enigma-section">
-                        <span class="label__enigma">이름</span>
-                        <div class="content__enigma" style="font-size: ${getFontSize(previewEnigmaContent)}">${enigma}</div>
-                    </div>
-                    <div class="handout-card__secret-section">전력</div>
-                    <div class="handout-card__enigma-info-section">
-                        <div class="handout-card__condition-section">
-                            <span class="label__condition">---------해제 조건---------</span>
-                            <div class="content__condition" style="font-size: ${getFontSize(previewConditionContent)}">${condition}</div>
-                        </div>
-                        <div class="handout-card__effect-section">
-                            <span class="label__effect">------------효과------------</span>
-                            <div class="content__effect" style="font-size: ${getFontSize(previewEffectContent)}">${effect}</div>
+                    <div class="handout-card__shock-secret-section">
+                        <div class="content__sheet-secret" style="font-size: ${getFontSize(previewMissionContent)}">${secret}</div>
+                        <div class="content__sheet-status">
+                            <div>
+                                <span>단장: </span>
+                                <div class="content__sheetname" style="font-size: ${getFontSize(previewSheetnameContent)}">${sheetname}</div>
+                            </div>
+                            <div>
+                                <span>초기빙의심도: </span>
+                                <div class="content__initdepth" style="font-size: ${getFontSize(previewInitdepthContent)}">${initdepth}</div>
+                            </div>
+                            <div class="content__mul">
+                                <span>공격력: </span>
+                                <div class="content__atk" style="font-size: ${getFontSize(previewAtkContent)}">${atk}</div>
+                                <span>방어력: </span>
+                                <div class="content__def" style="font-size: ${getFontSize(previewDefContent)}">${def}</div>
+                                <span>근원력: </span>
+                                <div class="content__bas" style="font-size: ${getFontSize(previewBasContent)}">${bas}</div>
+                            </div>
+                            <div>
+                                <span>마력: </span>
+                                <div class="content__mp" style="font-size: ${getFontSize(previewMpContent)}">${mp}</div>
+                            </div>
+                            <div>
+                                <span>마법: </span>
+                                <div class="content__magic" style="font-size: ${getFontSize(previewMagicContent)}">${magic}</div>
+                            </div>
+                            <div>
+                                <span>영역: </span>
+                                <div class="content__area" style="font-size: ${getFontSize(previewAreaContent)}">${area}</div>
+                            </div>
+                            <div>
+                                <span>특기: </span>
+                                <div class="content__skill" style="font-size: ${getFontSize(previewSkillContent)}">${skill}</div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -172,6 +197,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const handoutPreview = document.getElementById('handoutPreview');
     const handoutEditor = document.getElementById('handoutEditor');
+    
 
     // 버튼 배경색 업데이트
     function updateButtonBackground(selectedBtn, otherBtn) {
@@ -200,11 +226,21 @@ document.addEventListener('DOMContentLoaded', function () {
     function switchToSheetHandout() {
         loadSheetHandoutContent();
 
-        updateContent('nameInput', 'nameContent', '', adjustFontSizeNameShock);
         updateContent('missionInput', 'missionContent', '', adjustFontSizeMission);
-        updateContent('enigmaInput', 'enigmaContent', '', adjustFontSizeNameShock);
-        updateContent('conditionInput', 'conditionContent', '', adjustFontSizeCondition);
-        updateContent('effectInput', 'effectContent', '', adjustFontSizeEffect);
+        updateContent('secretInput', 'secretContent', '', adjustFontSizeMission);
+
+        updateContent('sheetnametInput', 'sheetnameContent', '', adjustFontSizeSheetStatus);
+        updateContent('initdepthInput', 'initdepthContent', '', adjustFontSizeSheetStatus);
+
+        updateContent('atkInput', 'atkContent', '', adjustFontSizeSheetStatus);
+        updateContent('defInput', 'defContent', '', adjustFontSizeSheetStatus);
+        updateContent('basInput', 'basContent', '', adjustFontSizeSheetStatus);
+        
+        updateContent('mpInput', 'mpContent', '', adjustFontSizeSheetStatus);
+        updateContent('magicInput', 'magicContent', '', adjustFontSizeSheetStatus);
+
+        updateContent('areaInput', 'areaContent', '', adjustFontSizeSheetStatus);
+        updateContent('skillInput', 'skillContent', '', adjustFontSizeSheetStatus);
 
         updateButtonBackground(switchToSheetBtn, switchToDefaultBtn)
     }
@@ -215,6 +251,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // 일반 핸드아웃 HTML 불러오기
     function loadDefaultHandoutContent() {
+        handoutEditor.classList.add('default');
+        handoutEditor.classList.remove('sheet');
+
         handoutPreview.innerHTML = `
             <div class="handout-card">
                 <div class="handout-card__front">
@@ -266,6 +305,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // 단장 핸드아웃 HTML 불러오기
     function loadSheetHandoutContent() {
+        handoutEditor.classList.add('sheet');
+        handoutEditor.classList.remove('default');
+
         handoutPreview.innerHTML = `
             <div class="handout-card">
                 <div class="handout-card__front">
@@ -279,9 +321,43 @@ document.addEventListener('DOMContentLoaded', function () {
                 <div class="handout-card__behind">
                     <div class="handout-card__behind-header">비밀</div>
                     <div class="handout-card__behind-content">
-                        <div class="handout-card__secret-section">전력</div>
-                        <div class="handout-card__secret-info-section"></div>
-                        <div class="handout-card__sheet-info-section"></div>
+                        <div class="handout-card__shock-secret-section">
+                            <div class="content__sheet-secret" id="secretContent"></div>
+                            <div class="content__sheet-status">
+                                <div>
+                                    <span>단장: </span>
+                                    <div class="content__sheetname" id="sheetnameContent"></div>
+                                </div>
+                                <div>
+                                    <span>초기빙의심도: </span>
+                                    <div class="content__initdepth" id="initdepthContent"></div>
+                                </div>
+                                <div class="content__mul">
+                                    <span>공격력: </span>
+                                    <div class="content__atk" id="atkContent"></div>
+                                    <span>방어력: </span>
+                                    <div class="content__def" id="defContent"></div>
+                                    <span>근원력: </span>
+                                    <div class="content__bas" id="basContent"></div>
+                                </div>
+                                <div>
+                                    <span>마력: </span>
+                                    <div class="content__mp" id="mpContent"></div>
+                                </div>
+                                <div>
+                                    <span>마법: </span>
+                                    <div class="content__magic" id="magicContent"></div>
+                                </div>
+                                <div>
+                                    <span>영역: </span>
+                                    <div class="content__area" id="areaContent"></div>
+                                </div>
+                                <div>
+                                    <span>특기: </span>
+                                    <div class="content__skill" id="skillContent"></div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -292,16 +368,24 @@ document.addEventListener('DOMContentLoaded', function () {
                 <div class="handout-editor__front-inputs">
                     <p class="editor-section__header">앞면</p>
                     <div class="input-group__front">
-                        <textarea id="nameInput" placeholder="이름을 입력하세요." autocomplete="off"></textarea>
-                        <textarea id="missionInput" placeholder="위장 정보를 입력하세요." autocomplete="off"></textarea>
+                        <textarea id="missionInput" placeholder="개요 정보를 입력하세요." autocomplete="off"></textarea>
                     </div>
                 </div>
                 <div class="handout-editor__behind-inputs">
                     <p class="editor-section__header">뒷면</p>
                     <div class="input-group__behind">
-                        <textarea id="enigmaInput" placeholder="이름을 입력하세요." autocomplete="off"></textarea>
-                        <textarea id="conditionInput" placeholder="조건을 입력하세요." autocomplete="off"></textarea>
-                        <textarea id="effectInput" placeholder="효과를 입력하세요." autocomplete="off"></textarea>
+                        <textarea id="secretInput" placeholder="비밀을 입력하세요." autocomplete="off"></textarea>
+                        <textarea id="sheetnametInput" placeholder="단장이름" autocomplete="off"></textarea>
+                        <textarea id="initdepthInput" placeholder="초기 빙의 심도" autocomplete="off"></textarea>
+                        <div class="input-group__mul">
+                            <textarea id="atkInput" placeholder="공" autocomplete="off"></textarea>
+                            <textarea id="defInput" placeholder="방" autocomplete="off"></textarea>
+                            <textarea id="basInput" placeholder="근" autocomplete="off"></textarea>
+                        </div>
+                        <textarea id="mpInput" placeholder="마력" autocomplete="off"></textarea>
+                        <textarea id="magicInput" placeholder="마법" autocomplete="off"></textarea>
+                        <textarea id="areaInput" placeholder="영역" autocomplete="off"></textarea>
+                        <textarea id="skillInput" placeholder="특기" autocomplete="off"></textarea>
                     </div>
                 </div>
             </div>
@@ -342,7 +426,10 @@ document.addEventListener('DOMContentLoaded', function () {
         textareas.forEach(function (textarea) {
             textarea.value = '';
         });
-        const contentElements = ['nameContent', 'missionContent', 'enigmaContent', 'conditionContent', 'effectContent'];
+        const contentElements = ['missionContent', 'secretContent', 
+            'sheetnameContent', 'initdepthContent', 
+            'atkContent', 'defContent', 'basContent', 'mpContent', 'magicContent', 'areaContent', 'skillContent'
+        ];
         contentElements.forEach(function (id) {
             const element = document.getElementById(id);
             if (element) {
@@ -377,24 +464,36 @@ document.addEventListener('DOMContentLoaded', function () {
     function submitSheetHandout() {
         const outputContainer = document.querySelector('.card__container');
 
-        const nameInput = document.getElementById('nameInput').value.trim();
         const missionInput = document.getElementById('missionInput').value.trim();
-        const enigmaInput = document.getElementById('enigmaInput').value.trim();
-        const conditionInput = document.getElementById('conditionInput').value.trim();
-        const effectInput = document.getElementById('effectInput').value.trim();
+        const secretInput = document.getElementById('secretInput').value.trim();
+        const sheetnametInput = document.getElementById('sheetnametInput').value.trim();
+        const initdepthInput = document.getElementById('initdepthInput').value.trim();
+        const atkInput = document.getElementById('atkInput').value.trim();
+        const defInput = document.getElementById('defInput').value.trim();
+        const basInput = document.getElementById('basInput').value.trim();
+        const mpInput = document.getElementById('mpInput').value.trim();
+        const magicInput = document.getElementById('magicInput').value.trim();
+        const areaInput = document.getElementById('areaInput').value.trim();
+        const skillInput = document.getElementById('skillInput').value.trim();
 
-        const newCardHTML = createEnigmaHandoutCard(nameInput, missionInput, enigmaInput, conditionInput, effectInput);
+        const newCardHTML = createEnigmaHandoutCard(missionInput, secretInput, sheetnametInput, initdepthInput, atkInput, defInput, basInput, mpInput, magicInput, areaInput, skillInput );
         outputContainer.innerHTML += newCardHTML;
 
         // 입력 필드 초기화
         document.querySelectorAll('textarea').forEach(textarea => textarea.value = '');
 
         // 미리보기 내용 삭제
-        document.getElementById('nameContent').textContent = '';
         document.getElementById('missionContent').textContent = '';
-        document.getElementById('enigmaContent').textContent = '';
-        document.getElementById('conditionContent').textContent = '';
-        document.getElementById('effectContent').textContent = '';
+        document.getElementById('secretContent').textContent = '';
+        document.getElementById('sheetnameContent').textContent = '';
+        document.getElementById('initdepthContent').textContent = '';
+        document.getElementById('atkContent').textContent = '';
+        document.getElementById('defContent').textContent = '';
+        document.getElementById('basContent').textContent = '';
+        document.getElementById('mpContent').textContent = '';
+        document.getElementById('magicContent').textContent = '';
+        document.getElementById('areaContent').textContent = '';
+        document.getElementById('skillContent').textContent = '';
     }
 
     // 에디터 textarea에 텍스트 입력 시 카드 프리뷰에 실시간으로 텍스트 업데이트
@@ -447,6 +546,23 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
+    // 단장 핸드아웃 단장정보 폰트 크기 조절
+    function adjustFontSizeSheetStatus(element, text) {
+        if (text.length > 225) {
+            element.style.fontSize = '8px';
+            element.style.lineHeight = '1.1em';
+        } else if (text.length > 20) {
+            element.style.fontSize = '9px';
+            element.style.lineHeight = '1.1em';
+        } else if (text.length > 9) {
+            element.style.fontSize = '10px';
+            element.style.lineHeight = '1.1em';
+        } else { // 디폴트
+            element.style.fontSize = '12px';
+            element.style.lineHeight = '1.1em';
+        }
+    }
+
     // 일반 핸드아웃 뒷면 비밀정보 폰트 크기 조절
     function adjustFontSizeSecret(element, text) {
         if (text.length > 165) {
@@ -456,40 +572,6 @@ document.addEventListener('DOMContentLoaded', function () {
             element.style.fontSize = '10px';
             element.style.lineHeight = '1.3em';
         } else if (text.length > 76) {
-            element.style.fontSize = '12px';
-            element.style.lineHeight = '1.3em';
-        } else { // 디폴트
-            element.style.fontSize = '14px';
-            element.style.lineHeight = '1.5em';
-        }
-    }
-
-    // 에니그마 뒷면 해제 조건 폰트 크기 조절
-    function adjustFontSizeCondition(element, text) {
-        if (text.length > 55) {
-            element.style.fontSize = '7px';
-            element.style.lineHeight = '1.1em';
-        } else if (text.length > 25) {
-            element.style.fontSize = '8px';
-            element.style.lineHeight = '1.2em';
-        } else if (text.length > 12) {
-            element.style.fontSize = '12px';
-            element.style.lineHeight = '1.1em';
-        } else { // 디폴트
-            element.style.fontSize = '14px';
-            element.style.lineHeight = '1.5em';
-        }
-    }
-
-    // 에니그마 핸드아웃 뒷면 효과 폰트 크기 조절
-    function adjustFontSizeEffect(element, text) {
-        if (text.length > 132) {
-            element.style.fontSize = '8px';
-            element.style.lineHeight = '1.1em';
-        } else if (text.length > 94) {
-            element.style.fontSize = '10px';
-            element.style.lineHeight = '1.3em';
-        } else if (text.length > 58) {
             element.style.fontSize = '12px';
             element.style.lineHeight = '1.3em';
         } else { // 디폴트
