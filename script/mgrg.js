@@ -43,7 +43,7 @@ function createHandoutCard(mission, secret) {
         <div class="handout-card">
             <button class="delete-btn">X</button>
             <div class="handout-card__front">
-                <div class="handout-card__front-header">개요</div>
+                <div class="handout-card__front-header">⥼· · 〰개요〰· · ⥽</div>
                 <div class="handout-card__front-content">
                     <div class="handout-card__mission-section">
                         <div class="content__mission" style="font-size: ${getFontSize(previewMissionContent)}">${mission}</div>
@@ -51,7 +51,7 @@ function createHandoutCard(mission, secret) {
                 </div>
             </div>
             <div class="handout-card__behind">
-                <div class="handout-card__behind-header">비밀</div>
+                <div class="handout-card__behind-header">· · · · ··· 비밀 ··· · · · ·</div>
                 <div class="handout-card__behind-content">
                     <div class="handout-card__shock-secret-section">
                         <div class="content__secret" style="font-size: ${getFontSize(previewSecretContent)}">${secret}</div>
@@ -81,7 +81,7 @@ function createEnigmaHandoutCard(mission, secret, sheetname, initdepth, atk, def
         <div class="handout-card">
             <button class="delete-btn">X</button>
             <div class="handout-card__front">
-                <div class="handout-card__front-header">개요</div>
+                <div class="handout-card__front-header">⥼· · 〰개요〰· · ⥽</div>
                 <div class="handout-card__front-content">
                     <div class="handout-card__mission-section">
                         <div class="content__mission" style="font-size: ${getFontSize(previewSecretContent)}">${mission}</div>
@@ -89,7 +89,7 @@ function createEnigmaHandoutCard(mission, secret, sheetname, initdepth, atk, def
                 </div>
             </div>
             <div class="handout-card__behind">
-                <div class="handout-card__behind-header">비밀</div>
+                <div class="handout-card__behind-header">· · · · ··· 비밀 ··· · · · ·</div>
                 <div class="handout-card__behind-content">
                     <div class="handout-card__shock-secret-section">
                         <div class="content__sheet-secret" style="font-size: ${getFontSize(previewMissionContent)}">${secret}</div>
@@ -257,15 +257,16 @@ document.addEventListener('DOMContentLoaded', function () {
         handoutPreview.innerHTML = `
             <div class="handout-card">
                 <div class="handout-card__front">
-                    <div class="handout-card__front-header">개요</div>
+                    <div class="handout-card__front-header">⥼· · 〰개요〰· · ⥽</div>
                     <div class="handout-card__front-content">
                         <div class="handout-card__mission-section">
                             <div class="content__mission" id="missionContent"></div>
+                            
                         </div>
                     </div>
                 </div>
                 <div class="handout-card__behind">
-                    <div class="handout-card__behind-header">비밀</div>
+                    <div class="handout-card__behind-header">· · · · ··· 비밀 ··· · · · ·</div>
                     <div class="handout-card__behind-content">
                         <div class="handout-card__shock-secret-section">
                             <div class="content__secret" id="secretContent"></div>
@@ -311,7 +312,7 @@ document.addEventListener('DOMContentLoaded', function () {
         handoutPreview.innerHTML = `
             <div class="handout-card">
                 <div class="handout-card__front">
-                    <div class="handout-card__front-header">개요</div>
+                    <div class="handout-card__front-header">⥼· · 〰개요〰· · ⥽</div>
                     <div class="handout-card__front-content">
                         <div class="handout-card__mission-section">
                             <div class="content__mission" id="missionContent"></div>
@@ -319,7 +320,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     </div>
                 </div>
                 <div class="handout-card__behind">
-                    <div class="handout-card__behind-header">비밀</div>
+                    <div class="handout-card__behind-header">· · · · ··· 비밀 ··· · · · ·</div>
                     <div class="handout-card__behind-content">
                         <div class="handout-card__shock-secret-section">
                             <div class="content__sheet-secret" id="secretContent"></div>

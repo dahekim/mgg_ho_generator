@@ -183,7 +183,7 @@ nav {
 }
 
 .handout-card__front-header {
-    border: 1px solid var(--black-color);
+    /* border: 1px solid var(--black-color); */
     color: var(--black-color);
     font-size: var(--font-large);
     font-weight: 800;
@@ -303,6 +303,7 @@ nav {
     flex-direction: column;
     justify-content: flex-start; 
     border: 1px solid var(--black-color);
+    border-radius: 5px; /* 안쪽으로 둥글게 들어가는 효과 */
     height: 100%;
 }   
 
@@ -314,7 +315,7 @@ nav {
 }
 
 .handout-card__mission-section .content__mission {
-    height: 198px;
+    height: 238px;
     padding: 1px 3px;
     box-sizing: border-box;
     overflow-wrap: break-word; 
@@ -327,7 +328,7 @@ nav {
 }
 
 .handout-card__behind-header {
-    border: 1px solid;
+    /* border: 1px solid; */
     color: var(--white-color);
     font-size: var(--font-large);
     font-weight: 800;
@@ -337,6 +338,7 @@ nav {
 
 .handout-card__behind-content {
     border: 2px solid var(--white-color);
+    border-radius: 5px;
     padding: 2px;
     display: flex;
     flex-direction: column;
@@ -393,9 +395,8 @@ nav {
 
 .handout-card__shock-secret-section .content__secret,
 .handout-card__shock-secret-section .content__sheet-secret {
-    height: 148px;
+    height: 244px;
     padding: 1px 3px;
-    border-top: 1px solid var(--black-color);
     margin-top: 1px;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -405,7 +406,7 @@ nav {
 }
 
 .handout-card__shock-secret-section .content__sheet-secret {
-    height: 134px;
+    height: 132px;
     
 }
 
