@@ -284,6 +284,17 @@ document.addEventListener('DOMContentLoaded', function() {
                     </div>
                 </div>
             </div>
+            <div class="handout-card__FontManager">
+                <button id="fontToggleBtn">▼ 폰트 사이즈 및 줄간격 조정</button>
+                
+                <div class="font-settings" id="fontSettings" style="display: none;">
+                    <label for="fontSize">폰트 크기:</label>
+                    <input type="number" id="fontSize" value="14" min="9" max="50"> px<br>
+                    
+                    <label for="lineHeight">줄 간격:</label>
+                    <input type="number" id="lineHeight" value="1.5" step="0.1" min="1" max="3"> em
+                </div>
+            </div>
         `;
 
         handoutEditor.innerHTML = `
@@ -311,9 +322,20 @@ document.addEventListener('DOMContentLoaded', function() {
 
         const resetBtn = document.querySelector('.handout-editor__reset-btn');
         const submitBtn = document.querySelector('.handout-editor__submit-btn');
-        
+        const fontToggleBtn = document.getElementById('fontToggleBtn');
+        const fontSettings = document.getElementById('fontSettings');
+
         resetBtn.addEventListener('click', resetHandout);
         submitBtn.addEventListener('click', submitHandout);
+
+        // 토글 버튼 클릭 시 폰트 설정 영역을 보이거나 숨깁니다.
+        fontToggleBtn.addEventListener('click', () => {
+            if (fontSettings.style.display === 'none') {
+                fontSettings.style.display = 'block';
+            } else {
+                fontSettings.style.display = 'none';
+            }
+        });
     }
 
     // SCP 핸드아웃 HTML 불러오기
