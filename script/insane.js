@@ -162,6 +162,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
+
+
 // 인세인 <-> 인세인SCP 핸드아웃 변경
 document.addEventListener('DOMContentLoaded', function() {
     const switchToDefaultBtn = document.getElementById('switchToDefault');
@@ -265,7 +267,19 @@ document.addEventListener('DOMContentLoaded', function() {
                     <p class="editor-section__header">앞면</p>
                     <div class="input-group__front">
                         <textarea id="nameInput" placeholder="이름을 입력하세요." autocomplete="off"></textarea>
-                        <textarea id="missionInput" placeholder="사명 정보를 입력하세요." autocomplete="off"></textarea>
+                        <div class="texteditor-container">
+                            <div class="toolbar" id="toolbar">
+                                <select id="fontSizeSelector">
+                                    <option value="12" style="font-size: 12px;">12</option>
+                                    <option value="14" style="font-size: 14px;" selected>14</option>
+                                    <option value="16" style="font-size: 16px;">16</option>
+                                </select>
+                                <button id="boldBtn" class="texteditor-btn"><i class="fas fa-bold"></i></button>
+                                <button id="italicBtn" class="texteditor-btn"><i class="fas fa-italic"></i></button>
+                            </div>
+                            <div id="missionInput" contenteditable="true" class="texteditor-content" placeholder="사명 정보를 입력하세요."></div>
+
+                        </div>
                     </div>
                 </div>
                 <div class="handout-editor__behind-inputs">
@@ -284,6 +298,19 @@ document.addEventListener('DOMContentLoaded', function() {
 
         const resetBtn = document.querySelector('.handout-editor__reset-btn');
         const submitBtn = document.querySelector('.handout-editor__submit-btn');
+        const missionInput = document.getElementById("missionInput");
+        const textEditorContainer = missionInput.closest(".texteditor-container");
+
+        // 포커스가 가면 붉은 테두리 보이기
+        missionInput.addEventListener("focus", () => {
+            textEditorContainer.classList.add("focused");  
+        });
+
+        // 포커스 벗어나면 붉은 테두리 해제 
+        missionInput.addEventListener("blur", () => {
+            textEditorContainer.classList.remove("focused");  
+        });
+
 
         resetBtn.addEventListener('click', resetHandout);
         submitBtn.addEventListener('click', submitHandout);
@@ -368,7 +395,7 @@ document.addEventListener('DOMContentLoaded', function() {
             textarea.value = ''; 
         });
 
-        const contentElements = ['nameContent', 'missionContent', 'shockContent', 'secretContent', 'infectionContent'];
+        const contentElements = ['nameContent', 'missionContent', 'shockContent', 'secretContent'];
         contentElements.forEach(function(id) {
             const element = document.getElementById(id);
             if (element) {
