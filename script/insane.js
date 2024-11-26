@@ -1,27 +1,9 @@
-// 특수 괄호 복사 
-function initializeBracketButtons() {
-    document.querySelectorAll('.bracket-btn').forEach(button => {
-        button.addEventListener('click', function() {
-            const bracketText = this.getAttribute('data-bracket');
-            copyToClipboard(bracketText);
-        });
-    });
+import { initializeBracketButtons } from './common.js';
 
-    function copyToClipboard(text) {
-        const textArea = document.createElement('textarea');
-        textArea.value = text;
-        document.body.appendChild(textArea);
-        textArea.select();
-        textArea.setSelectionRange(0, 99999);
-        try {
-            document.execCommand('copy');
-        } catch (err) {
-            console.error('복사 실패', err);
-        }
-        textArea.setSelectionRange(0, 0);
-        document.body.removeChild(textArea);
-    }
-}
+// 특수 괄호 복사 
+document.addEventListener('DOMContentLoaded', function () {
+    initializeBracketButtons();
+});
 
 
 // 프리뷰 카드의 폰트 크기 가져옴
@@ -275,17 +257,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     </div>
                 </div>
             </div>
-            <div class="handout-card__FontManager">
-                <button id="fontToggleBtn">▼ 폰트 사이즈 및 줄간격 조정</button>
-                
-                <div class="font-settings" id="fontSettings" style="display: none;">
-                    <label for="fontSize">폰트 크기:</label>
-                    <input type="number" id="fontSize" value="14" min="9" max="50"> px<br>
-                    
-                    <label for="lineHeight">줄 간격:</label>
-                    <input type="number" id="lineHeight" value="1.5" step="0.1" min="1" max="3"> em
-                </div>
-            </div>
         `;
 
         handoutEditor.innerHTML = `
@@ -313,20 +284,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
         const resetBtn = document.querySelector('.handout-editor__reset-btn');
         const submitBtn = document.querySelector('.handout-editor__submit-btn');
-        const fontToggleBtn = document.getElementById('fontToggleBtn');
-        const fontSettings = document.getElementById('fontSettings');
 
         resetBtn.addEventListener('click', resetHandout);
         submitBtn.addEventListener('click', submitHandout);
-
-        // 토글 버튼 클릭 시 폰트 설정 영역을 보이거나 숨깁니다.
-        fontToggleBtn.addEventListener('click', () => {
-            if (fontSettings.style.display === 'none') {
-                fontSettings.style.display = 'block';
-            } else {
-                fontSettings.style.display = 'none';
-            }
-        });
     }
 
     // SCP 핸드아웃 HTML 불러오기

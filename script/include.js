@@ -1,3 +1,5 @@
+import { initializeBracketButtons } from './common.js';
+
 document.addEventListener("DOMContentLoaded", includeHTML);
 
 // navbar 초기화
@@ -40,6 +42,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 .catch(err => console.error("Error loading include:", err));
         }
     });
+});
+
+
+document.addEventListener('DOMContentLoaded', function () {
+    initializeBracketButtons();
 });
 
 

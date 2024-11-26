@@ -6,9 +6,10 @@
     <title>모험기획국 TRPG 핸드아웃 생성기 - inSANe </title>
     <link rel="stylesheet" href="./css/style.css">
     <link rel="icon" href="./favicon.ico" type="image/x-icon">
-    <script src="./script/script.js"></script>
-    <script src="./script/include.js"></script>
+    <script src="./script/insane.js" type="module"></script>
+    <script src="./script/include.js" type="module"></script>
     <script src="./script/navbar.js"></script>
+    <script src="./script/common.js" type="module"></script>
 
     <script
         src="https://kit.fontawesome.com/de65e8c240.js"
@@ -17,16 +18,22 @@
 </head>
 
 <body>
+    <!-- Header -->
     <div data-include="./common/header.html"></div>
+    
+    <!-- Navigation -->
     <div data-include="./common/navbar.html"></div>
+    
+    <!-- Bracket Area -->
     <div data-include="./common/brackets.html"></div>
 
-
+    <!-- Version-Switch Button Area -->
     <div class="version-switch-btn__container">
         <button id="switchToDefault" class="switch-btn">인세인 핸드아웃</button>
         <button id="switchToSCP" class="switch-btn">SCP 핸드아웃</button>
     </div>
     
+    <!-- Handout Preview and Handout Editor -->
     <div class="main-content__container">
         <div id="handoutPreview" class="handout-preview__container"></div>
         <div id="handoutEditor" class="handout-editor__container"></div>
@@ -36,22 +43,24 @@
 
     <hr noshade/>
 
-    <!-- 카드 결과물 -->
+    <!-- Handout Output Manage Button Area  -->
     <section class="handout-output__button-group">
         <button type="reset" class="handout-output__reset-btn">초기화</button>
         <button type="submit" class="handout-output__print-btn">인쇄</button>
     </section>
-
+    
+    <!-- Handout Output  -->
     <section class="card__container"></section>
 
 
-    <!-- 준비중 모달 -->
+    <!-- Coming-Soon Modal -->
     <div id="comingSoonModal" class="modal">
         <div class="modal-content notice-modal">
             <span id="modal-message">준비중입니다.</span>
         </div>
     </div>
 
+    <!-- Guide  -->
     <div class="guide__container">
         <a href="https://docs.google.com/spreadsheets/d/1IhuKfUjlPJQJef6plQYkKrNQeOGcNkcC49iyh534fso/edit?usp=sharing" target="_blank">
             <i class="fa-solid fa-circle-question"></i>
