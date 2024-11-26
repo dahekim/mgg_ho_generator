@@ -1,5 +1,5 @@
 // 특수 괄호 복사 
-document.addEventListener('DOMContentLoaded', function() {    
+function initializeBracketButtons() {
     document.querySelectorAll('.bracket-btn').forEach(button => {
         button.addEventListener('click', function() {
             const bracketText = this.getAttribute('data-bracket');
@@ -8,7 +8,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     function copyToClipboard(text) {
-        // http 환경
         const textArea = document.createElement('textarea');
         textArea.value = text;
         document.body.appendChild(textArea);
@@ -22,7 +21,8 @@ document.addEventListener('DOMContentLoaded', function() {
         textArea.setSelectionRange(0, 0);
         document.body.removeChild(textArea);
     }
-});
+}
+
 
 // 프리뷰 카드의 폰트 크기 가져옴
 function getFontSize(element) {
