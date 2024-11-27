@@ -11,6 +11,11 @@ function getFontSize(element) {
     return window.getComputedStyle(element).fontSize;
 }
 
+// 프리뷰 카드의 줄간격 가져옴
+function getLineHeight(element) {
+    return window.getComputedStyle(element).lineHeight;
+}
+
 // 일반 핸드아웃 카드 생성 함수
 function createHandoutCard(name, mission, shock, secret) {
     const previewNameContent = document.getElementById('nameContent');
@@ -26,11 +31,11 @@ function createHandoutCard(name, mission, shock, secret) {
                 <div class="handout-card__front-content">
                     <div class="handout-card__name-section">
                         <span class="label__name">이름</span>
-                        <div class="content__name" style="font-size: ${getFontSize(previewNameContent)}">${name}</div>
+                        <div class="content__name" style="font-size: ${getFontSize(previewNameContent)}; line-height: ${getLineHeight(previewNameContent)};">${name}</div>
                     </div>
                     <div class="handout-card__mission-section">
                         <span class="label__mission">사명</span>
-                        <div class="content__mission" style="font-size: ${getFontSize(previewMissionContent)}">${mission}</div>
+                        <div class="content__mission" style="font-size: ${getFontSize(previewMissionContent)}; line-height: ${getLineHeight(previewMissionContent)};">${mission}</div>
                     </div>
                 </div>
             </div>
@@ -41,9 +46,9 @@ function createHandoutCard(name, mission, shock, secret) {
                     <div class="handout-card__shock-secret-section">
                         <div class="handout-card__shock-section">
                             <span class="label__shock">쇼크</span>
-                            <div class="content__shock" style="font-size: ${getFontSize(previewShockContent)}">${shock}</div>
+                            <div class="content__shock" style="font-size: ${getFontSize(previewShockContent)}; line-height: ${getLineHeight(previewShockContent)};">${shock}</div>
                         </div>
-                        <div class="content__secret" style="font-size: ${getFontSize(previewSecretContent)}">${secret}</div>
+                        <div class="content__secret" style="font-size: ${getFontSize(previewSecretContent)}; line-height: ${getLineHeight(previewSecretContent)};">${secret}</div>
                     </div>
                     <div class="handout-card__behind-footer">
                         <div class="footer__disclaimer">
@@ -85,13 +90,13 @@ function createSCPHandoutCard(shock, infection, secret) {
                     <div class="handout-card__shock-secret-section">
                         <div class="handout-card__shock-section">
                             <span class="label__shock">쇼크</span>
-                            <div class="content__shock" style="font-size: ${getFontSize(previewShockContent)}">${shock}</div>
+                            <div class="content__shock" style="font-size: ${getFontSize(previewShockContent)}; line-height: ${getLineHeight(previewShockContent)};">${shock}</div>
                         </div>
                         <div class="handout-card__shock-section">
                                 <span class="label__infection">2차감염</span>
-                                <div class="content__infection" style="font-size: ${getFontSize(previewInfectionContent)}">${infection}</div>
+                                <div class="content__infection" style="font-size: ${getFontSize(previewInfectionContent)}; line-height: ${getLineHeight(previewInfectionContent)};">${infection}</div>
                             </div>
-                        <div class="content__secret" style="font-size: ${getFontSize(previewSecretContent)}">${secret}</div>
+                        <div class="content__secret" style="font-size: ${getFontSize(previewSecretContent)}; line-height:${getLineHeight(previewSecretContent)}">${secret}</div>
                     </div>
                     <div class="handout-card__behind-footer">
                         <div class="footer__disclaimer">
@@ -291,6 +296,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // SCP 핸드아웃 HTML 불러오기
     function loadSCPHandoutContent() {
+        
         handoutPreview.innerHTML = `
             <section class="handout-preview__container">
                 <div class="handout-card">
@@ -431,8 +437,6 @@ document.addEventListener('DOMContentLoaded', function() {
         let infectionInput = document.getElementById('infectionInput').value.trim();
         let secretInput = document.getElementById('secretInput').value.trim();
 
-        // shockInput = shockInput.replace(/\n/g, '<br>');
-        // infectionInput = infectionInput.replace(/\n/g, '<br>');
         secretInput = secretInput.replace(/\n/g, '<br>');
 
         const newCardHTML = createSCPHandoutCard(shockInput, infectionInput, secretInput);
@@ -466,15 +470,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // 일반 핸드아웃 앞면 이름, 쇼크 범위 & SCP 핸드아웃 2차감염 폰트 크기 조절
     function adjustFontSizeNameShock(element, text) {
-        if (text.length > 25) {
-            element.style.fontSize = '7px';
-            element.style.lineHeight = '1.1em';
-        } else if (text.length > 13) {
+        if (text.length > 18) {
             element.style.fontSize = '8px';
+            element.style.lineHeight = '1em';
+        } else if (text.length > 10) {
+            element.style.fontSize = '11px';
             element.style.lineHeight = '1.2em';
         } else if (text.length > 7) {
             element.style.fontSize = '12px';
-            element.style.lineHeight = '1.1em';
+            element.style.lineHeight = '1.2em';
         } else { // 디폴트
             element.style.fontSize = '14px'; 
             element.style.lineHeight = '1.5em'; 
@@ -483,14 +487,26 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // 일반 핸드아웃 앞면 사명정보 폰트 크기 조절
     function adjustFontSizeMission(element, text) {
-        if (text.length > 225) {
-            element.style.fontSize = '8px';
-            element.style.lineHeight = '1.1em';
-        } else if (text.length > 144) {
+        if(text.length > 310){
             element.style.fontSize = '10px';
-            element.style.lineHeight = '1.3em';
-        } else if (text.length > 90) {
+            element.style.lineHeight = '0.9em';    
+        } else if(text.length > 255){
+            element.style.fontSize = '11px';
+            element.style.lineHeight = '0.95em';    
+        } else if(text.length > 225){
             element.style.fontSize = '12px';
+            element.style.lineHeight = '0.95em';    
+        } else if(text.length > 205){
+            element.style.fontSize = '12px';
+            element.style.lineHeight = '1.1em';    
+        } else if (text.length > 179) {
+            element.style.fontSize = '12px';
+            element.style.lineHeight = '1.2em';
+        } else if (text.length > 135) {
+            element.style.fontSize = '13px';
+            element.style.lineHeight = '1.2em';
+        } else if (text.length > 90) {
+            element.style.fontSize = '14px';
             element.style.lineHeight = '1.3em';
         } else { // 디폴트
             element.style.fontSize = '14px'; 
@@ -500,14 +516,23 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // 일반 핸드아웃 뒷면 비밀정보 폰트 크기 조절
     function adjustFontSizeSecret(element, text) {
-        if (text.length > 165) {
-            element.style.fontSize = '8px';
-            element.style.lineHeight = '1.1em';
-        } else if (text.length > 117) {
+        if (text.length > 246) {
             element.style.fontSize = '10px';
-            element.style.lineHeight = '1.3em';
-        } else if (text.length > 76) {
+            element.style.lineHeight = '0.95em';
+        } else if (text.length > 190) {
+            element.style.fontSize = '11px';
+            element.style.lineHeight = '0.95em';
+        } else if (text.length > 175) {
             element.style.fontSize = '12px';
+            element.style.lineHeight = '1em';
+        } else if (text.length > 120) {
+            element.style.fontSize = '12px';
+            element.style.lineHeight = '1.1em';
+        } else if (text.length > 106) {
+            element.style.fontSize = '14px';
+            element.style.lineHeight = '1.1em';
+        } else if (text.length > 88) {
+            element.style.fontSize = '14px';
             element.style.lineHeight = '1.3em';
         } else { // 디폴트
             element.style.fontSize = '14px'; 
@@ -517,14 +542,23 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // SCP 핸드아웃 뒷면 비밀정보 폰트 크기 조절
     function adjustFontSizeSecretSCP(element, text) {
-        if (text.length > 132) {
-            element.style.fontSize = '8px';
-            element.style.lineHeight = '1.1em';
-        } else if (text.length > 94) {
+        if (text.length > 184) {
             element.style.fontSize = '10px';
-            element.style.lineHeight = '1.3em';
-        } else if (text.length > 58) {
+            element.style.lineHeight = '0.95em';
+        } else if (text.length > 154) {
+            element.style.fontSize = '11px';
+            element.style.lineHeight = '0.95em';
+        } else if (text.length > 140) {
             element.style.fontSize = '12px';
+            element.style.lineHeight = '0.95em';
+        } else if (text.length > 100) {
+            element.style.fontSize = '12px';
+            element.style.lineHeight = '1.1em';
+        } else if (text.length > 75) {
+            element.style.fontSize = '14px';
+            element.style.lineHeight = '1.1em';
+        } else if (text.length > 65) {
+            element.style.fontSize = '14px';
             element.style.lineHeight = '1.3em';
         } else { // 디폴트
             element.style.fontSize = '14px'; 

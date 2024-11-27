@@ -310,7 +310,7 @@ nav {
 }
 
 .handout-card__mission-section .content__mission {
-    height: 198px;
+    height: 201px;
     padding: 1px 3px;
     box-sizing: border-box;
     overflow-wrap: break-word; 
@@ -407,11 +407,11 @@ nav {
 }
 
 .handout-card__condition-section{
-    height: 50px;
+    height: 57px;
 }
 
 .handout-card__effect-section {
-    height: 147px;
+    height: 149px;
 }
 
 .label__condition,

@@ -202,7 +202,9 @@ nav {
     justify-content: space-between; 
     border: 1px solid var(--black-color);
     margin-bottom: 2px;
-    height: 25px;
+    height: 100%;
+    min-height: 25px;
+    max-height: 30px;
 }
 
 .handout-card__name-section .label__name {
@@ -245,7 +247,7 @@ nav {
 }
 
 .handout-card__mission-section .content__mission {
-    height: 198px;
+    height: 201px;
     padding: 1px 3px;
     box-sizing: border-box;
     overflow-wrap: break-word; 
@@ -295,7 +297,9 @@ nav {
     position: relative;
     justify-content: space-between;
     border-bottom: 1px solid var(--black-color);
-    height: 25px;
+    height: 100%;
+    min-height: 25px;
+    max-height: 28px;
 }
 
 .handout-card__shock-section .label__shock {
@@ -321,7 +325,7 @@ nav {
 }
 
 .handout-card__shock-secret-section .content__secret {
-    height: 148px;
+    height: 151px;
     padding: 1px 3px;
     border-top: 1px solid var(--black-color);
     margin-top: 1px;
@@ -534,7 +538,7 @@ nav {
 }
 
 .scp-handout .handout-card__shock-secret-section .content__secret {
-    height: 123px;
+    height: 126px;
     padding: 2px 5px;
     border-top: 1px solid var(--black-color);
     margin-top: 1px;

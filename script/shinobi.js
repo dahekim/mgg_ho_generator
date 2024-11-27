@@ -5,11 +5,39 @@ document.addEventListener('DOMContentLoaded', function () {
     initializeBracketButtons();
 });
 
+// 문자열 길이를 콘솔에 출력하는 함수
+function monitorTextareaLength(id) {
+    const observer = new MutationObserver(() => {
+        const textarea = document.getElementById(id);
+        if (textarea) {
+            textarea.addEventListener('input', () => {
+                console.log(`Textarea ID: ${id}, Length: ${textarea.value.length}`);
+            });
+            observer.disconnect(); // 요소를 찾으면 더 이상 감시하지 않음
+        }
+    });
+
+    // DOM의 변화를 감시
+    observer.observe(document.body, { childList: true, subtree: true });
+}
+
+// monitorTextareaLength('missionInput');
+
 
 
 // 프리뷰 카드의 폰트 크기 가져옴
 function getFontSize(element) {
     return window.getComputedStyle(element).fontSize;
+}
+
+// 프리뷰 카드의 줄간격 가져옴
+function getLineHeight(element) {
+    if (element instanceof Element){
+        return window.getComputedStyle(element).lineHeight;
+    } else {
+        return null; // 또는 기본 줄간격 값 지정
+    }
+    
 }
 
 // 일반 핸드아웃 카드 생성 함수
@@ -232,7 +260,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         updateContent('nameInput', 'nameContent', '', adjustFontSizeNameShock);
         updateContent('missionInput', 'missionContent', '', adjustFontSizeMission);
-        updateContent('secretInput', 'secretContent', '', adjustFontSizeSecret);
+        updateContent('secretInput', 'secretContent', '', adjustFontSizeMission);
 
         updateButtonBackground(switchToDefaultBtn, switchToEnigmaBtn, switchToPersonaBtn)
     }
@@ -257,7 +285,7 @@ document.addEventListener('DOMContentLoaded', function() {
         updateContent('nameInput', 'nameContent', '', adjustFontSizeNameShock);
         updateContent('missionInput', 'missionContent', '', adjustFontSizeMission);
         updateContent('personaInput', 'personaContent', '', adjustFontSizeNameShock);
-        updateContent('secretInput', 'secretContent', '', adjustFontSizeSecret);
+        updateContent('secretInput', 'secretContent', '', adjustFontSizeMission);
         
         updateButtonBackground(switchToPersonaBtn, switchToEnigmaBtn, switchToDefaultBtn)
     }
@@ -400,6 +428,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         resetBtn.addEventListener('click', resetSCPHandout);
         submitBtn.addEventListener('click', submitSCPHandout);
+        // monitorTextareaLength('conditionInput');
     }
 
     // 페르소나 핸드아웃 HTML 불러오기
@@ -524,7 +553,6 @@ document.addEventListener('DOMContentLoaded', function() {
         let missionInput = document.getElementById('missionInput').value.trim();
         let secretInput = document.getElementById('secretInput').value.trim();
 
-        // nameInput = nameInput.replace(/\n/g, '<br>');
         missionInput = missionInput.replace(/\n/g, '<br>');
         secretInput = secretInput.replace(/\n/g, '<br>');
 
@@ -618,15 +646,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // 일반 핸드아웃 앞면 이름, 쇼크 범위 & 페르소나 핸드아웃 앞면뒷면 이름 폰트크기 조절
     function adjustFontSizeNameShock(element, text) {
-        if (text.length > 25) {
-            element.style.fontSize = '7px';
-            element.style.lineHeight = '1.1em';
-        } else if (text.length > 13) {
+        if (text.length > 18) {
             element.style.fontSize = '8px';
+            element.style.lineHeight = '1em';
+        } else if (text.length > 10) {
+            element.style.fontSize = '11px';
             element.style.lineHeight = '1.2em';
         } else if (text.length > 7) {
             element.style.fontSize = '12px';
-            element.style.lineHeight = '1.1em';
+            element.style.lineHeight = '1.2em';
         } else { // 디폴트
             element.style.fontSize = '14px'; 
             element.style.lineHeight = '1.5em'; 
@@ -635,14 +663,26 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // 일반 핸드아웃 앞면 사명정보 & 페르소나 핸드아웃 앞면 위장정보 및 뒷면 진실 정보 폰트 크기 조절
     function adjustFontSizeMission(element, text) {
-        if (text.length > 225) {
-            element.style.fontSize = '8px';
-            element.style.lineHeight = '1.1em';
-        } else if (text.length > 144) {
+        if(text.length > 309){
             element.style.fontSize = '10px';
-            element.style.lineHeight = '1.3em';
-        } else if (text.length > 90) {
+            element.style.lineHeight = '0.9em';    
+        } else if(text.length > 255){
+            element.style.fontSize = '11px';
+            element.style.lineHeight = '0.95em';    
+        } else if(text.length > 223){
             element.style.fontSize = '12px';
+            element.style.lineHeight = '0.95em';    
+        } else if(text.length > 205){
+            element.style.fontSize = '12px';
+            element.style.lineHeight = '1.1em';    
+        } else if (text.length > 175) {
+            element.style.fontSize = '12px';
+            element.style.lineHeight = '1.2em';
+        } else if (text.length > 142) {
+            element.style.fontSize = '13px';
+            element.style.lineHeight = '1.2em';
+        } else if (text.length > 116) {
+            element.style.fontSize = '14px';
             element.style.lineHeight = '1.3em';
         } else { // 디폴트
             element.style.fontSize = '14px'; 
@@ -669,12 +709,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // 에니그마 뒷면 해제 조건 폰트 크기 조절
     function adjustFontSizeCondition(element, text) {
-        if (text.length > 55) {
-            element.style.fontSize = '7px';
-            element.style.lineHeight = '1.1em';
-        } else if (text.length > 25) {
-            element.style.fontSize = '8px';
-            element.style.lineHeight = '1.2em';
+        if (text.length > 74) {
+            element.style.fontSize = '9.5px';
+            element.style.lineHeight = '.95em';
+        } else if (text.length > 44) {
+            element.style.fontSize = '10px';
+            element.style.lineHeight = '1em';
+        } else if (text.length > 31) {
+            element.style.fontSize = '12x';
+            element.style.lineHeight = '1em';
         } else if (text.length > 12) {
             element.style.fontSize = '12px';
             element.style.lineHeight = '1.1em';
@@ -686,14 +729,20 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // 에니그마 핸드아웃 뒷면 효과 폰트 크기 조절
     function adjustFontSizeEffect(element, text) {
-        if (text.length > 132) {
-            element.style.fontSize = '8px';
-            element.style.lineHeight = '1.1em';
-        } else if (text.length > 94) {
+        if (text.length > 209) {
             element.style.fontSize = '10px';
-            element.style.lineHeight = '1.3em';
-        } else if (text.length > 58) {
+            element.style.lineHeight = '0.9em';
+        } else if (text.length > 172) {
+            element.style.fontSize = '11px';
+            element.style.lineHeight = '1em';
+        } else if (text.length > 127) {
             element.style.fontSize = '12px';
+            element.style.lineHeight = '1em';
+        } else if (text.length > 94) {
+            element.style.fontSize = '12px';
+            element.style.lineHeight = '1.3em';
+        } else if (text.length > 79) {
+            element.style.fontSize = '14px';
             element.style.lineHeight = '1.3em';
         } else { // 디폴트
             element.style.fontSize = '14px'; 

@@ -6,7 +6,6 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
-
 // 프리뷰 카드의 폰트 크기 가져옴
 function getFontSize(element) {
     if (element instanceof Element) {
@@ -16,6 +15,15 @@ function getFontSize(element) {
     }
 }
 
+// 프리뷰 카드의 줄간격 가져옴
+function getLineHeight(element) {
+    if (element instanceof Element){
+        return window.getComputedStyle(element).lineHeight;
+    } else {
+        return null; // 또는 기본 줄간격 값 지정
+    }
+    
+}
 
 // 일반 핸드아웃 카드 생성 함수
 function createHandoutCard(mission, secret) {
@@ -29,7 +37,7 @@ function createHandoutCard(mission, secret) {
                 <div class="handout-card__front-header">⥼· · 〰개요〰· · ⥽</div>
                 <div class="handout-card__front-content">
                     <div class="handout-card__mission-section">
-                        <div class="content__mission" style="font-size: ${getFontSize(previewMissionContent)}">${mission}</div>
+                        <div class="content__mission" style="font-size: ${getFontSize(previewMissionContent)}; line-height:${getLineHeight(previewMissionContent)};">${mission}</div>
                     </div>
                 </div>
             </div>
@@ -37,7 +45,7 @@ function createHandoutCard(mission, secret) {
                 <div class="handout-card__behind-header">· · · · ··· 비밀 ··· · · · ·</div>
                 <div class="handout-card__behind-content">
                     <div class="handout-card__shock-secret-section">
-                        <div class="content__secret" style="font-size: ${getFontSize(previewSecretContent)}">${secret}</div>
+                        <div class="content__secret" style="font-size: ${getFontSize(previewSecretContent)}; line-height:${getLineHeight(previewMissionContent)};">${secret}</div>                    
                     </div>
                 </div>
             </div>
@@ -67,7 +75,7 @@ function createEnigmaHandoutCard(mission, secret, sheetname, initdepth, atk, def
                 <div class="handout-card__front-header">⥼· · 〰개요〰· · ⥽</div>
                 <div class="handout-card__front-content">
                     <div class="handout-card__mission-section">
-                        <div class="content__mission" style="font-size: ${getFontSize(previewSecretContent)}">${mission}</div>
+                        <div class="content__mission" style="font-size: ${getFontSize(previewMissionContent)}; line-height:${getLineHeight(previewMissionContent)};">${mission}</div>
                     </div>
                 </div>
             </div>
@@ -75,39 +83,39 @@ function createEnigmaHandoutCard(mission, secret, sheetname, initdepth, atk, def
                 <div class="handout-card__behind-header">· · · · ··· 비밀 ··· · · · ·</div>
                 <div class="handout-card__behind-content">
                     <div class="handout-card__shock-secret-section">
-                        <div class="content__sheet-secret" style="font-size: ${getFontSize(previewMissionContent)}">${secret}</div>
+                        <div class="content__sheet-secret" style="font-size: ${getFontSize(previewSecretContent)}; line-height:${getLineHeight(previewSecretContent)};">${secret}</div>
                         <div class="content__sheet-status">
                             <div>
                                 <span>단장: </span>
-                                <div class="content__sheetname" style="font-size: ${getFontSize(previewSheetnameContent)}">${sheetname}</div>
+                                <div class="content__sheetname" style="font-size: ${getFontSize(previewSheetnameContent)}; line-height:${getLineHeight(previewSheetnameContent)};">${sheetname}</div>
                             </div>
                             <div>
                                 <span>초기빙의심도: </span>
-                                <div class="content__initdepth" style="font-size: ${getFontSize(previewInitdepthContent)}">${initdepth}</div>
+                                <div class="content__initdepth" style="font-size: ${getFontSize(previewInitdepthContent)} ; line-height:${getLineHeight(previewInitdepthContent)};">${initdepth}</div>
                             </div>
                             <div class="content__mul">
                                 <span>공격력: </span>
-                                <div class="content__atk" style="font-size: ${getFontSize(previewAtkContent)}">${atk}</div>
+                                <div class="content__atk" style="font-size: ${getFontSize(previewAtkContent)}; line-height:${getLineHeight(previewAtkContent)};">${atk}</div>
                                 <span>방어력: </span>
-                                <div class="content__def" style="font-size: ${getFontSize(previewDefContent)}">${def}</div>
+                                <div class="content__def" style="font-size: ${getFontSize(previewDefContent)}; line-height:${getLineHeight(previewDefContent)};">${def}</div>
                                 <span>근원력: </span>
-                                <div class="content__bas" style="font-size: ${getFontSize(previewBasContent)}">${bas}</div>
+                                <div class="content__bas" style="font-size: ${getFontSize(previewBasContent)}; line-height:${getLineHeight(previewBasContent)};">${bas}</div>
                             </div>
                             <div>
                                 <span>마력: </span>
-                                <div class="content__mp" style="font-size: ${getFontSize(previewMpContent)}">${mp}</div>
+                                <div class="content__mp" style="font-size: ${getFontSize(previewMpContent)}; line-height:${getLineHeight(previewMpContent)};">${mp}</div>
                             </div>
                             <div>
                                 <span>마법: </span>
-                                <div class="content__magic" style="font-size: ${getFontSize(previewMagicContent)}">${magic}</div>
+                                <div class="content__magic" style="font-size: ${getFontSize(previewMagicContent)}; line-height:${getLineHeight(previewMagicContent)};">${magic}</div>
                             </div>
                             <div>
                                 <span>영역: </span>
-                                <div class="content__area" style="font-size: ${getFontSize(previewAreaContent)}">${area}</div>
+                                <div class="content__area" style="font-size: ${getFontSize(previewAreaContent)}; line-height:${getLineHeight(previewAreaContent)};">${area}</div>
                             </div>
                             <div>
                                 <span>특기: </span>
-                                <div class="content__skill" style="font-size: ${getFontSize(previewSkillContent)}">${skill}</div>
+                                <div class="content__skill" style="font-size: ${getFontSize(previewSkillContent)}; line-height:${getLineHeight(previewSkillContent)};">${skill}</div>
                             </div>
                         </div>
                     </div>
@@ -210,7 +218,7 @@ document.addEventListener('DOMContentLoaded', function () {
         loadSheetHandoutContent();
 
         updateContent('missionInput', 'missionContent', '', adjustFontSizeMission);
-        updateContent('secretInput', 'secretContent', '', adjustFontSizeMission);
+        updateContent('secretInput', 'secretContent', '', adjustFontSizeSecretInfo);
 
         updateContent('sheetnametInput', 'sheetnameContent', '', adjustFontSizeSheetStatus);
         updateContent('initdepthInput', 'initdepthContent', '', adjustFontSizeSheetStatus);
@@ -399,7 +407,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const element = document.getElementById(id);
             if (element) {
                 element.textContent = '';
-                adjustFontSizeNameShock(element, '');
+                adjustFontSizeSecret(element, '');
             }
         });
     }
@@ -496,33 +504,22 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    // 일반 핸드아웃 앞면 이름, 쇼크 범위 & 페르소나 핸드아웃 앞면뒷면 이름 폰트크기 조절
-    function adjustFontSizeNameShock(element, text) {
-        if (text.length > 25) {
-            element.style.fontSize = '7px';
-            element.style.lineHeight = '1.1em';
-        } else if (text.length > 13) {
-            element.style.fontSize = '8px';
-            element.style.lineHeight = '1.2em';
-        } else if (text.length > 7) {
-            element.style.fontSize = '12px';
-            element.style.lineHeight = '1.1em';
-        } else { // 디폴트
-            element.style.fontSize = '14px';
-            element.style.lineHeight = '1.5em';
-        }
-    }
-
-    // 일반 핸드아웃 앞면 사명정보 & 페르소나 핸드아웃 앞면 위장정보 및 뒷면 진실 정보 폰트 크기 조절
+    // 일반 핸드아웃 앞면 사명정보 & 단장 핸드아웃 앞면 폰트크기 조절
     function adjustFontSizeMission(element, text) {
-        if (text.length > 225) {
-            element.style.fontSize = '8px';
-            element.style.lineHeight = '1.1em';
-        } else if (text.length > 144) {
-            element.style.fontSize = '10px';
-            element.style.lineHeight = '1.3em';
-        } else if (text.length > 90) {
+        if (text.length > 324) {
+            element.style.fontSize = '11px';
+            element.style.lineHeight = '0.95em';
+        } else if (text.length > 276) {
             element.style.fontSize = '12px';
+            element.style.lineHeight = '0.95em';
+        } else if (text.length > 196) {
+            element.style.fontSize = '12px';
+            element.style.lineHeight = '1.1em';
+        } else if (text.length > 169) {
+            element.style.fontSize = '14px';
+            element.style.lineHeight = '1.1em';
+        } else if (text.length > 142) {
+            element.style.fontSize = '14px';
             element.style.lineHeight = '1.3em';
         } else { // 디폴트
             element.style.fontSize = '14px';
@@ -530,7 +527,53 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    // 단장 핸드아웃 단장정보 폰트 크기 조절
+    // 일반 핸드아웃 뒷면 비밀정보 폰트 크기 조절
+    function adjustFontSizeSecret(element, text) {
+        if (text.length > 337) {
+            element.style.fontSize = '11px';
+            element.style.lineHeight = '0.95em';
+        } else if (text.length > 303) {
+            element.style.fontSize = '12px';
+            element.style.lineHeight = '0.95em';
+        } else if (text.length > 221) {
+            element.style.fontSize = '12px';
+            element.style.lineHeight = '1.1em';
+        } else if (text.length > 180) {
+            element.style.fontSize = '14px';
+            element.style.lineHeight = '1.1em';
+        } else if (text.length > 152) {
+            element.style.fontSize = '14px';
+            element.style.lineHeight = '1.3em';
+        } else { // 디폴트
+            element.style.fontSize = '14px';
+            element.style.lineHeight = '1.5em';
+        }
+    }
+
+     // 단장 핸드아웃 뒷면 단장 비밀 개요 폰트크기 조절
+    function adjustFontSizeSecretInfo(element, text) {
+        if (text.length > 194) {
+            element.style.fontSize = '11px';
+            element.style.lineHeight = '0.95em';
+        } else if (text.length > 179) {
+            element.style.fontSize = '12px';
+            element.style.lineHeight = '0.95em';
+        } else if (text.length > 122) {
+            element.style.fontSize = '12px';
+            element.style.lineHeight = '1.1em';
+        } else if (text.length > 108) {
+            element.style.fontSize = '14px';
+            element.style.lineHeight = '1.1em';
+        } else if (text.length > 79) {
+            element.style.fontSize = '14px';
+            element.style.lineHeight = '1.3em';
+        } else { // 디폴트
+            element.style.fontSize = '14px';
+            element.style.lineHeight = '1.5em';
+        }
+    }
+
+    // 단장 핸드아웃 뒷면 단장 정보 폰트 크기 조절
     function adjustFontSizeSheetStatus(element, text) {
         if (text.length > 225) {
             element.style.fontSize = '8px';
@@ -544,23 +587,6 @@ document.addEventListener('DOMContentLoaded', function () {
         } else { // 디폴트
             element.style.fontSize = '12px';
             element.style.lineHeight = '1.1em';
-        }
-    }
-
-    // 일반 핸드아웃 뒷면 비밀정보 폰트 크기 조절
-    function adjustFontSizeSecret(element, text) {
-        if (text.length > 165) {
-            element.style.fontSize = '8px';
-            element.style.lineHeight = '1.1em';
-        } else if (text.length > 117) {
-            element.style.fontSize = '10px';
-            element.style.lineHeight = '1.3em';
-        } else if (text.length > 76) {
-            element.style.fontSize = '12px';
-            element.style.lineHeight = '1.3em';
-        } else { // 디폴트
-            element.style.fontSize = '14px';
-            element.style.lineHeight = '1.5em';
         }
     }
 

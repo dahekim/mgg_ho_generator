@@ -315,7 +315,7 @@ nav {
 }
 
 .handout-card__mission-section .content__mission {
-    height: 238px;
+    height: 240px;
     padding: 1px 3px;
     box-sizing: border-box;
     overflow-wrap: break-word; 
@@ -395,18 +395,18 @@ nav {
 
 .handout-card__shock-secret-section .content__secret,
 .handout-card__shock-secret-section .content__sheet-secret {
-    height: 244px;
+    height: 248px;
     padding: 1px 3px;
     margin-top: 1px;
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
-    -webkit-line-clamp: 18;
+    -webkit-line-clamp: 24;
     -webkit-box-orient: vertical;
 }
 
 .handout-card__shock-secret-section .content__sheet-secret {
-    height: 132px;
+    height: 145px;
     
 }
 
