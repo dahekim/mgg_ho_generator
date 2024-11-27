@@ -54,11 +54,11 @@ function createHandoutCard(name, mission, secret) {
                 <div class="handout-card__front-content">
                     <div class="handout-card__name-section">
                         <span class="label__name">이름</span>
-                        <div class="content__name" style="font-size: ${getFontSize(previewNameContent)}">${name}</div>
+                        <div class="content__name" style="font-size: ${getFontSize(previewNameContent)}; line-height:${getLineHeight(previewNameContent)};">${name}</div>
                     </div>
                     <div class="handout-card__mission-section">
                         <span class="label__mission">사명</span>
-                        <div class="content__mission" style="font-size: ${getFontSize(previewMissionContent)}">${mission}</div>
+                        <div class="content__mission" style="font-size: ${getFontSize(previewMissionContent)}; line-height:${getLineHeight(previewMissionContent)};">${mission}</div>
                     </div>
                 </div>
             </div>
@@ -73,7 +73,7 @@ function createHandoutCard(name, mission, secret) {
                 <div class="handout-card__behind-content">
                     <div class="handout-card__secret-section">비밀</div>
                     <div class="handout-card__shock-secret-section">
-                        <div class="content__secret" style="font-size: ${getFontSize(previewSecretContent)}">${secret}</div>
+                        <div class="content__secret" style="font-size: ${getFontSize(previewSecretContent)}; line-height:${getLineHeight(previewSecretContent)};">${secret}</div>
                     </div>
                 </div>
             </div>
@@ -99,11 +99,11 @@ function createEnigmaHandoutCard(name, mission, enigma, condition, effect) {
                 <div class="handout-card__front-content">
                     <div class="handout-card__name-section">
                         <span class="label__name">이름</span>
-                        <div class="content__name" style="font-size: ${getFontSize(previewNameContent)}">${name}</div>
+                        <div class="content__name" style="font-size: ${getFontSize(previewNameContent)}; line-height:${getLineHeight(previewNameContent)};">${name}</div>
                     </div>
                     <div class="handout-card__mission-section">
                         <span class="label__mission">위장</span>
-                        <div class="content__mission" style="font-size: ${getFontSize(previewMissionContent)}">${mission}</div>
+                        <div class="content__mission" style="font-size: ${getFontSize(previewMissionContent)}; line-height:${getLineHeight(previewMissionContent)};">${mission}</div>
                     </div>
                 </div>
             </div>
@@ -112,17 +112,17 @@ function createEnigmaHandoutCard(name, mission, enigma, condition, effect) {
                 <div class="handout-card__behind-content">
                     <div class="handout-card__enigma-section">
                         <span class="label__enigma">이름</span>
-                        <div class="content__enigma" style="font-size: ${getFontSize(previewEnigmaContent)}">${enigma}</div>
+                        <div class="content__enigma" style="font-size: ${getFontSize(previewEnigmaContent)}; line-height:${getLineHeight(previewEnigmaContent)};">${enigma}</div>
                     </div>
                     <div class="handout-card__secret-section">전력</div>
                     <div class="handout-card__enigma-info-section">
                         <div class="handout-card__condition-section">
                             <span class="label__condition">---------해제 조건---------</span>
-                            <div class="content__condition" style="font-size: ${getFontSize(previewConditionContent)}">${condition}</div>
+                            <div class="content__condition" style="font-size: ${getFontSize(previewConditionContent)}; line-height:${getLineHeight(previewConditionContent)};">${condition}</div>
                         </div>
                         <div class="handout-card__effect-section">
                             <span class="label__effect">------------효과------------</span>
-                            <div class="content__effect" style="font-size: ${getFontSize(previewEffectContent)}">${effect}</div>
+                            <div class="content__effect" style="font-size: ${getFontSize(previewEffectContent)}; line-height:${getLineHeight(previewEffectContent)};">${effect}</div>
                         </div>
                     </div>
                 </div>
@@ -148,11 +148,11 @@ function createPersonaHandoutCard(name, mission, persona, secret){
                 <div class="handout-card__front-content">
                     <div class="handout-card__name-section">
                         <span class="label__name">이름</span>
-                        <div class="content__name" style="font-size: ${getFontSize(previewNameContent)}">${name}</div>
+                        <div class="content__name" style="font-size: ${getFontSize(previewNameContent)}; line-height:${getLineHeight(previewNameContent)};">${name}</div>
                     </div>
                     <div class="handout-card__mission-section">
                         <span class="label__mission">위장</span>
-                        <div class="content__mission" style="font-size: ${getFontSize(previewMissionContent)}">${mission}</div>
+                        <div class="content__mission" style="font-size: ${getFontSize(previewMissionContent)}; line-height:${getLineHeight(previewMissionContent)};">${mission}</div>
                     </div>
                 </div>
             </div>
@@ -161,11 +161,11 @@ function createPersonaHandoutCard(name, mission, persona, secret){
                 <div class="handout-card__behind-content">
                     <div class="handout-card__persona-section">
                             <span class="label__persona">이름</span>
-                            <div class="content__persona"style="font-size: ${getFontSize(previewPersonaContent)}">${persona}</div>
+                            <div class="content__persona"style="font-size: ${getFontSize(previewPersonaContent)}; line-height:${getLineHeight(previewPersonaContent)};">${persona}</div>
                     </div>
                     <div class="handout-card__secret-section">진실</div>
                     <div class="handout-card__shock-secret-section">
-                        <div class="content__secret" style="font-size: ${getFontSize(previewSecretContent)}">${secret}</div>
+                        <div class="content__secret" style="font-size: ${getFontSize(previewSecretContent)}; line-height:${getLineHeight(previewSecretContent)};">${secret}</div>
                     </div>
                 </div>
             </div>
