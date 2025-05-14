@@ -26,16 +26,21 @@ function getLineHeight(element) {
 }
 
 // 일반 핸드아웃 카드 생성 함수
-function createHandoutCard(mission, secret) {
+function createHandoutCard(name, mission, secret) {
+    const previewNameContent = document.getElementById('nameContent');
     const previewMissionContent = document.getElementById('missionContent');
     const previewSecretContent = document.getElementById('secretContent');
-
+    
     const newCardHTML = `
         <div class="handout-card">
             <button class="delete-btn">X</button>
             <div class="handout-card__front">
                 <div class="handout-card__front-header">⥼· · 〰개요〰· · ⥽</div>
                 <div class="handout-card__front-content">
+                    <div class="handout-card__name-section">
+                        <span class="label__name">이름</span>
+                        <div class="content__name" style="font-size: ${getFontSize(previewNameContent)}; line-height:${getLineHeight(previewNameContent)};">${name}</div>
+                    </div>
                     <div class="handout-card__mission-section">
                         <div class="content__mission" style="font-size: ${getFontSize(previewMissionContent)}; line-height:${getLineHeight(previewMissionContent)};">${mission}</div>
                     </div>
@@ -55,7 +60,8 @@ function createHandoutCard(mission, secret) {
 }
 
 // 단장 핸드아웃 카드 생성 함수
-function createEnigmaHandoutCard(mission, secret, sheetname, initdepth, atk, def, bas, mp, magic, area, skill) {
+function createEnigmaHandoutCard(name, mission, secret, sheetname, initdepth, atk, def, bas, mp, magic, area, skill) {
+    const previewNameContent = document.getElementById('nameContent');
     const previewMissionContent = document.getElementById('missionContent');
     const previewSecretContent = document.getElementById('secretnameContent');
     const previewSheetnameContent = document.getElementById('sheetnameContent');
@@ -74,6 +80,10 @@ function createEnigmaHandoutCard(mission, secret, sheetname, initdepth, atk, def
             <div class="handout-card__front">
                 <div class="handout-card__front-header">⥼· · 〰개요〰· · ⥽</div>
                 <div class="handout-card__front-content">
+                    <div class="handout-card__name-section">
+                        <span class="label__name">이름</span>
+                        <div class="content__name" style="font-size: ${getFontSize(previewNameContent)}; line-height:${getLineHeight(previewNameContent)};">${name}</div>
+                    </div>
                     <div class="handout-card__mission-section">
                         <div class="content__mission" style="font-size: ${getFontSize(previewMissionContent)}; line-height:${getLineHeight(previewMissionContent)};">${mission}</div>
                     </div>
@@ -207,6 +217,7 @@ document.addEventListener('DOMContentLoaded', function () {
     function switchToDefaultHandout() {
         loadDefaultHandoutContent();
 
+        updateContent('nameInput', 'nameContent', '', adjustFontSizeName);
         updateContent('missionInput', 'missionContent', '', adjustFontSizeMission);
         updateContent('secretInput', 'secretContent', '', adjustFontSizeSecret);
 
@@ -217,6 +228,7 @@ document.addEventListener('DOMContentLoaded', function () {
     function switchToSheetHandout() {
         loadSheetHandoutContent();
 
+        updateContent('nameInput', 'nameContent', '', adjustFontSizeName);
         updateContent('missionInput', 'missionContent', '', adjustFontSizeMission);
         updateContent('secretInput', 'secretContent', '', adjustFontSizeSecretInfo);
 
@@ -250,9 +262,12 @@ document.addEventListener('DOMContentLoaded', function () {
                 <div class="handout-card__front">
                     <div class="handout-card__front-header">⥼· · 〰개요〰· · ⥽</div>
                     <div class="handout-card__front-content">
+                        <div class="handout-card__name-section">
+                            <span class="label__name">이름</span>
+                            <div class="content__name" id="nameContent"></div>
+                        </div>
                         <div class="handout-card__mission-section">
                             <div class="content__mission" id="missionContent"></div>
-                            
                         </div>
                     </div>
                 </div>
@@ -272,6 +287,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 <div class="handout-editor__front-inputs">
                     <p class="editor-section__header">앞면</p>
                     <div class="input-group__front">
+                    <textarea id="nameInput" placeholder="이름을 입력하세요." autocomplete="off"></textarea>
                         <textarea id="missionInput" placeholder="개요 정보를 입력하세요." autocomplete="off"></textarea>
                     </div>
                 </div>
@@ -305,6 +321,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 <div class="handout-card__front">
                     <div class="handout-card__front-header">⥼· · 〰개요〰· · ⥽</div>
                     <div class="handout-card__front-content">
+                        <div class="handout-card__name-section">
+                            <span class="label__name">이름</span>
+                            <div class="content__name" id="nameContent"></div>
+                        </div>
                         <div class="handout-card__mission-section">
                             <div class="content__mission" id="missionContent"></div>
                         </div>
@@ -360,6 +380,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 <div class="handout-editor__front-inputs">
                     <p class="editor-section__header">앞면</p>
                     <div class="input-group__front">
+                        <textarea id="nameInput" placeholder="이름을 입력하세요." autocomplete="off"></textarea>
                         <textarea id="missionInput" placeholder="개요 정보를 입력하세요." autocomplete="off"></textarea>
                     </div>
                 </div>
@@ -402,7 +423,7 @@ document.addEventListener('DOMContentLoaded', function () {
             textarea.value = '';
         });
 
-        const contentElements = ['missionContent', 'secretContent'];
+        const contentElements = ['nameContent', 'missionContent', 'secretContent'];
         contentElements.forEach(function (id) {
             const element = document.getElementById(id);
             if (element) {
@@ -418,7 +439,7 @@ document.addEventListener('DOMContentLoaded', function () {
         textareas.forEach(function (textarea) {
             textarea.value = '';
         });
-        const contentElements = ['missionContent', 'secretContent', 
+        const contentElements = ['nameContent', 'missionContent', 'secretContent', 
             'sheetnameContent', 'initdepthContent', 
             'atkContent', 'defContent', 'basContent', 'mpContent', 'magicContent', 'areaContent', 'skillContent'
         ];
@@ -434,13 +455,14 @@ document.addEventListener('DOMContentLoaded', function () {
     function submitHandout() {
         const outputContainer = document.querySelector('.card__container');
 
+        let nameInput = document.getElementById('nameInput').value.trim();
         let missionInput = document.getElementById('missionInput').value.trim();
         let secretInput = document.getElementById('secretInput').value.trim();
 
         missionInput = missionInput.replace(/\n/g, '<br>');
         secretInput = secretInput.replace(/\n/g, '<br>');
 
-        const newCardHTML = createHandoutCard(missionInput, secretInput);
+        const newCardHTML = createHandoutCard(nameInput, missionInput, secretInput);
 
         outputContainer.innerHTML += newCardHTML;
 
@@ -448,6 +470,7 @@ document.addEventListener('DOMContentLoaded', function () {
         document.querySelectorAll('textarea').forEach(textarea => textarea.value = '');
 
         // 미리보기 내용 삭제
+        document.getElementById('nameContent').textContent = '';
         document.getElementById('missionContent').textContent = '';
         document.getElementById('secretContent').textContent = '';
     }
@@ -456,6 +479,7 @@ document.addEventListener('DOMContentLoaded', function () {
     function submitSheetHandout() {
         const outputContainer = document.querySelector('.card__container');
 
+        const nameInput = document.getElementById('nameInput').value.trim();
         const missionInput = document.getElementById('missionInput').value.trim();
         const secretInput = document.getElementById('secretInput').value.trim();
         const sheetnametInput = document.getElementById('sheetnametInput').value.trim();
@@ -468,13 +492,14 @@ document.addEventListener('DOMContentLoaded', function () {
         const areaInput = document.getElementById('areaInput').value.trim();
         const skillInput = document.getElementById('skillInput').value.trim();
 
-        const newCardHTML = createEnigmaHandoutCard(missionInput, secretInput, sheetnametInput, initdepthInput, atkInput, defInput, basInput, mpInput, magicInput, areaInput, skillInput );
+        const newCardHTML = createEnigmaHandoutCard(nameInput, missionInput, secretInput, sheetnametInput, initdepthInput, atkInput, defInput, basInput, mpInput, magicInput, areaInput, skillInput );
         outputContainer.innerHTML += newCardHTML;
 
         // 입력 필드 초기화
         document.querySelectorAll('textarea').forEach(textarea => textarea.value = '');
 
         // 미리보기 내용 삭제
+        document.getElementById('nameContent').textContent = '';
         document.getElementById('missionContent').textContent = '';
         document.getElementById('secretContent').textContent = '';
         document.getElementById('sheetnameContent').textContent = '';
@@ -501,6 +526,23 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         } else {
             console.error(`Element with ID '${id}' or '${targetId}' not found.`);
+        }
+    }
+
+    // 일반 핸드아웃 앞면 이름, 쇼크 범위 & 페르소나 핸드아웃 앞면뒷면 이름 폰트크기 조절
+    function adjustFontSizeName(element, text) {
+        if (text.length > 18) {
+            element.style.fontSize = '8px';
+            element.style.lineHeight = '1em';
+        } else if (text.length > 10) {
+            element.style.fontSize = '11px';
+            element.style.lineHeight = '1.2em';
+        } else if (text.length > 7) {
+            element.style.fontSize = '12px';
+            element.style.lineHeight = '1.2em';
+        } else { // 디폴트
+            element.style.fontSize = '14px'; 
+            element.style.lineHeight = '1.5em'; 
         }
     }
 
